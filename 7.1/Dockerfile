@@ -7,6 +7,8 @@ MAINTAINER Adam Gąsowski <adam.gasowski@gander.pl>
 RUN apt-get update
 RUN apt-get install -y \
     openssh-client \
+    postgresql-client \
+    mysql-client \
     sudo \
     git \
     wget \
