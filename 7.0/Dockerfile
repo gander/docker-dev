@@ -27,22 +27,17 @@ RUN apt-get upgrade -y
 RUN rm -r /var/lib/apt/lists/*
 
 RUN docker-php-ext-install bcmath
-RUN docker-php-ext-install exif
 RUN docker-php-ext-install gd
 RUN docker-php-ext-install intl
 RUN docker-php-ext-install mbstring
 RUN docker-php-ext-install mcrypt
-RUN docker-php-ext-install mysqli
 RUN docker-php-ext-install opcache
 RUN docker-php-ext-install pcntl
 RUN docker-php-ext-install pdo_mysql
 RUN docker-php-ext-install pdo_pgsql
 RUN docker-php-ext-install sockets
 RUN docker-php-ext-install zip
-RUN docker-php-ext-install xsl
-RUN docker-php-ext-install tidy
 RUN docker-php-ext-install soap
-RUN pecl install xdebug
 
 # COPY CONFIGS
 COPY php.ini /usr/local/etc/php/
