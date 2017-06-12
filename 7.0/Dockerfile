@@ -38,7 +38,6 @@ RUN docker-php-ext-install pdo_pgsql
 RUN docker-php-ext-install sockets
 RUN docker-php-ext-install zip
 RUN docker-php-ext-install soap
-RUN pecl install xdebug
 
 # COPY CONFIGS
 COPY php.ini /usr/local/etc/php/
