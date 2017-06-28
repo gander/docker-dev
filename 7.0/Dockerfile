@@ -54,7 +54,7 @@ RUN curl -LsS https://symfony.com/installer -o /usr/local/bin/symfony && chmod a
 # INSTALL PHPUNIT 5.7
 RUN curl -LsS https://phar.phpunit.de/phpunit-5.7.phar -o /usr/local/bin/phpunit5 && chmod +x /usr/local/bin/phpunit5
 
-# INSTALL PHPUNIT 6.0
+# INSTALL PHPUNIT 6.2
 RUN curl -LsS https://phar.phpunit.de/phpunit-6.2.phar -o /usr/local/bin/phpunit6 && chmod +x /usr/local/bin/phpunit6
 
 RUN ln -s /usr/local/bin/phpunit5 /usr/local/bin/phpunit
