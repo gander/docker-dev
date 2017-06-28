@@ -65,7 +65,6 @@ RUN a2enmod rewrite && a2enmod vhost_alias && a2enconf vhost-alias
 # SET ALIASES
 RUN printf "alias l='ls -CF'\nalias la='ls -A'\nalias ll='ls -alF'\n" >> /etc/bash.bashrc
 
-#RUN printf "\nexport TERM=xterm\n" >> /etc/bash.bashrc
 RUN printf "if [ -d \"\$HOME/.composer/vendor/bin\" ]; then\n    PATH=\"\$HOME/.composer/vendor/bin:\$PATH\"\nfi" >> /etc/bash.bashrc
 
 # ADD DEV USER
@@ -83,6 +82,6 @@ USER dev
 
 VOLUME /www
 WORKDIR /www
-EXPOSE 80
 
+EXPOSE 80
 CMD ["sudo", "apache2-foreground"]
