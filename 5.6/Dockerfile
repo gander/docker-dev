@@ -4,8 +4,9 @@ ARG DEV_UID=1000
 
 MAINTAINER Adam Gąsowski <adam.gasowski@gander.pl>
 
-RUN apt-get update
-RUN apt-get install -y \
+RUN apt-get update \
+    && apt-get upgrade -y \
+    && apt-get install -y \
     openssh-client \
     postgresql-client \
     mysql-client \
@@ -22,23 +23,22 @@ RUN apt-get install -y \
     libfreetype6-dev \
     libxslt-dev \
     libtidy-dev \
-    --no-install-recommends
-RUN apt-get upgrade -y
-RUN rm -r /var/lib/apt/lists/*
+    --no-install-recommends \
+    && rm -r /var/lib/apt/lists/*
 
-RUN docker-php-ext-install bcmath
-RUN docker-php-ext-install gd
-RUN docker-php-ext-install intl
-RUN docker-php-ext-install mbstring
-RUN docker-php-ext-install mcrypt
-RUN docker-php-ext-install opcache
-RUN docker-php-ext-install pcntl
-RUN docker-php-ext-install pdo_mysql
-RUN docker-php-ext-install pdo_pgsql
-RUN docker-php-ext-install sockets
-RUN docker-php-ext-install zip
-RUN docker-php-ext-install soap
-RUN pecl install xdebug
+RUN docker-php-ext-install bcmath \
+    && docker-php-ext-install gd \
+    && docker-php-ext-install intl \
+    && docker-php-ext-install mbstring \
+    && docker-php-ext-install mcrypt \
+    && docker-php-ext-install opcache \
+    && docker-php-ext-install pcntl \
+    && docker-php-ext-install pdo_mysql \
+    && docker-php-ext-install pdo_pgsql \
+    && docker-php-ext-install sockets \
+    && docker-php-ext-install zip \
+    && docker-php-ext-install soap \
+    && pecl install xdebug
 
 # COPY CONFIGS
 COPY php.ini /usr/local/etc/php/
@@ -46,48 +46,38 @@ COPY xdebug.ini /usr/local/etc/php/conf.d/
 COPY vhost-alias.conf /etc/apache2/conf-available/
 
 # INSTALL COMPOSER
-RUN curl -sS https://getcomposer.org/installer | php
-RUN mv composer.phar /usr/local/bin/composer
+RUN curl -sS https://getcomposer.org/installer | php && mv composer.phar /usr/local/bin/composer
 
 # INSTALL SYMFONY
-RUN curl -LsS https://symfony.com/installer -o /usr/local/bin/symfony
-RUN chmod a+x /usr/local/bin/symfony
+RUN curl -LsS https://symfony.com/installer -o /usr/local/bin/symfony && chmod a+x /usr/local/bin/symfony
 
 # INSTALL PHPUNIT 4.8
-RUN wget https://phar.phpunit.de/phpunit-4.8.phar -O /usr/local/bin/phpunit4
-RUN chmod +x /usr/local/bin/phpunit4
+RUN curl -LsS https://phar.phpunit.de/phpunit-4.8.phar -o /usr/local/bin/phpunit4 && chmod +x /usr/local/bin/phpunit4
 
 # INSTALL PHPUNIT 5.7
-RUN wget https://phar.phpunit.de/phpunit-5.7.phar -O /usr/local/bin/phpunit5
-RUN chmod +x /usr/local/bin/phpunit5
+RUN curl -LsS https://phar.phpunit.de/phpunit-5.7.phar -o /usr/local/bin/phpunit5 && chmod +x /usr/local/bin/phpunit5
 
 RUN ln -s /usr/local/bin/phpunit5 /usr/local/bin/phpunit
 
 # ENABLE CONFIGS
-RUN a2enmod rewrite
-RUN a2enmod vhost_alias
-RUN a2enconf vhost-alias
+RUN a2enmod rewrite && a2enmod vhost_alias && a2enconf vhost-alias
 
 # SET ALIASES
-RUN printf "alias l='ls -CF'\n" >> /etc/bash.bashrc
-RUN printf "alias la='ls -A'\n" >> /etc/bash.bashrc
-RUN printf "alias ll='ls -alF'\n" >> /etc/bash.bashrc
+RUN printf "alias l='ls -CF'\nalias la='ls -A'\nalias ll='ls -alF'\n" >> /etc/bash.bashrc
 
 #RUN printf "\nexport TERM=xterm\n" >> /etc/bash.bashrc
 RUN printf "if [ -d \"\$HOME/.composer/vendor/bin\" ]; then\n    PATH=\"\$HOME/.composer/vendor/bin:\$PATH\"\nfi" >> /etc/bash.bashrc
 
 # ADD DEV USER
-RUN adduser --disabled-password --gecos '' --uid ${DEV_UID} dev
-RUN adduser dev sudo
-RUN printf "dev ALL=(ALL) NOPASSWD: ALL\n" > /etc/sudoers.d/dev
+RUN adduser --disabled-password --gecos '' --uid ${DEV_UID} dev \
+    && adduser dev sudo \
+    && printf "dev ALL=(ALL) NOPASSWD: ALL\n" > /etc/sudoers.d/dev
 
 # SET APACHE USER
-RUN printf "export APACHE_RUN_USER=dev\n" >> /etc/apache2/envvars
-RUN printf "export APACHE_RUN_GROUP=dev\n" >> /etc/apache2/envvars
+RUN printf "export APACHE_RUN_USER=dev\nexport APACHE_RUN_GROUP=dev\n" >> /etc/apache2/envvars
 
 # SET APACHE FILES OWNER
-RUN chown -R dev:dev /var/lock/apache2
-RUN chown -R dev:dev /var/log/apache2
+RUN chown -R dev:dev /var/lock/apache2 /var/log/apache2
 
 USER dev
 
