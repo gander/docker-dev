@@ -14,6 +14,7 @@ RUN apt-get update \
     git \
     wget \
     curl \
+    cron \
     nano \
     libicu-dev \
     libmcrypt-dev \
