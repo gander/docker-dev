@@ -68,6 +68,8 @@ RUN chown -R dev:dev /var/lock/apache2 /var/log/apache2
 
 USER dev
 
+RUN composer global require kherge/box --prefer-source
+
 VOLUME /www
 WORKDIR /www
 
