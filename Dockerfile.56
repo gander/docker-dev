@@ -49,6 +49,8 @@ ADD rootfs /
 RUN curl -LsS https://getcomposer.org/installer | php -- --install-dir=/usr/bin --filename=composer
 RUN curl -LsS https://symfony.com/installer -o /usr/local/bin/symfony && chmod a+x /usr/local/bin/symfony
 
+RUN curl -LSs https://box-project.github.io/box2/installer.php | php && mv box.phar /usr/local/bin/box
+
 RUN curl -LsS http://robo.li/robo.phar -o /usr/local/bin/robo && chmod +x /usr/local/bin/robo
 
 RUN curl -LsS http://www.phing.info/get/phing-${PHING2_VERSION}.phar -o /usr/local/bin/phing && chmod +x /usr/local/bin/phing
@@ -72,8 +74,6 @@ RUN printf "export APACHE_RUN_USER=dev\nexport APACHE_RUN_GROUP=dev\n" >> /etc/a
 RUN chown -R dev:dev /var/lock/apache2 /var/log/apache2
 
 USER dev
-
-RUN composer global require kherge/box --prefer-source
 
 VOLUME /www
 WORKDIR /www
