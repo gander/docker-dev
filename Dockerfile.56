@@ -49,6 +49,8 @@ ADD rootfs /
 RUN curl -LsS https://getcomposer.org/installer | php -- --install-dir=/usr/bin --filename=composer
 RUN curl -LsS https://symfony.com/installer -o /usr/local/bin/symfony && chmod a+x /usr/local/bin/symfony
 
+RUN curl -LsS http://robo.li/robo.phar -o /usr/local/bin/robo && chmod +x /usr/local/bin/robo
+
 RUN curl -LsS http://www.phing.info/get/phing-${PHING2_VERSION}.phar -o /usr/local/bin/phing && chmod +x /usr/local/bin/phing
 
 RUN curl -LsS https://phar.phpunit.de/phpunit-${PHPUNIT4_VERSION}.phar -o /usr/local/bin/phpunit4 && chmod +x /usr/local/bin/phpunit4
