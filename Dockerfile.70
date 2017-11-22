@@ -42,9 +42,11 @@ RUN docker-php-ext-install bcmath \
     && docker-php-ext-install sockets \
     && docker-php-ext-install zip \
     && docker-php-ext-install soap \
-    && pecl install xdebug
-    && printf "\n" | pecl install mongo
-    && docker-php-ext-enable mongo
+    && pecl install xdebug \
+    && printf "\n" | pecl install mongo \
+    && printf "\n" | pecl install mongodb \
+    && docker-php-ext-enable mongo \
+    && docker-php-ext-enable mongodb
 
 ADD rootfs /
 
