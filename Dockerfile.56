@@ -57,6 +57,8 @@ RUN curl -LsS http://robo.li/robo.phar -o /usr/local/bin/robo && chmod +x /usr/l
 
 RUN curl -LsS http://www.phing.info/get/phing-${PHING2_VERSION}.phar -o /usr/local/bin/phing && chmod +x /usr/local/bin/phing
 
+RUN curl -LsS https://deployer.org/releases/v4.3.1/deployer.phar -o /usr/local/bin/dep && chmod +x /usr/local/bin/dep
+
 RUN curl -LsS https://phar.phpunit.de/phpunit-${PHPUNIT4_VERSION}.phar -o /usr/local/bin/phpunit4 && chmod +x /usr/local/bin/phpunit4
 RUN curl -LsS https://phar.phpunit.de/phpunit-${PHPUNIT5_VERSION}.phar -o /usr/local/bin/phpunit5 && chmod +x /usr/local/bin/phpunit5
 
