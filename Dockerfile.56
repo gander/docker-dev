@@ -48,19 +48,19 @@ RUN docker-php-ext-install bcmath \
 
 ADD rootfs /
 
-RUN curl -LsS https://getcomposer.org/installer | php -- --install-dir=/usr/bin --filename=composer
-RUN curl -LsS https://symfony.com/installer -o /usr/local/bin/symfony && chmod a+x /usr/local/bin/symfony
+RUN curl -LsS http://getcomposer.org/installer | php -- --install-dir=/usr/bin --filename=composer
+RUN curl -LsS http://symfony.com/installer -o /usr/local/bin/symfony && chmod a+x /usr/local/bin/symfony
 
-RUN curl -LSs https://box-project.github.io/box2/installer.php | php && mv box.phar /usr/local/bin/box
+RUN curl -LSs http://box-project.github.io/box2/installer.php | php && mv box.phar /usr/local/bin/box
 
 RUN curl -LsS http://robo.li/robo.phar -o /usr/local/bin/robo && chmod +x /usr/local/bin/robo
 
 RUN curl -LsS http://www.phing.info/get/phing-${PHING2_VERSION}.phar -o /usr/local/bin/phing && chmod +x /usr/local/bin/phing
 
-RUN curl -LsS https://deployer.org/releases/v4.3.1/deployer.phar -o /usr/local/bin/dep && chmod +x /usr/local/bin/dep
+RUN curl -LsS http://deployer.org/releases/v4.3.1/deployer.phar -o /usr/local/bin/dep && chmod +x /usr/local/bin/dep
 
-RUN curl -LsS https://phar.phpunit.de/phpunit-${PHPUNIT4_VERSION}.phar -o /usr/local/bin/phpunit4 && chmod +x /usr/local/bin/phpunit4
-RUN curl -LsS https://phar.phpunit.de/phpunit-${PHPUNIT5_VERSION}.phar -o /usr/local/bin/phpunit5 && chmod +x /usr/local/bin/phpunit5
+RUN curl -LsS http://phar.phpunit.de/phpunit-${PHPUNIT4_VERSION}.phar -o /usr/local/bin/phpunit4 && chmod +x /usr/local/bin/phpunit4
+RUN curl -LsS http://phar.phpunit.de/phpunit-${PHPUNIT5_VERSION}.phar -o /usr/local/bin/phpunit5 && chmod +x /usr/local/bin/phpunit5
 
 RUN ln -s /usr/local/bin/phpunit5 /usr/local/bin/phpunit
 
