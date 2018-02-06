@@ -48,8 +48,6 @@ RUN pecl install xdebug-2.5.5
 RUN pecl install mongodb
 RUN docker-php-ext-enable mongodb
 
-ADD rootfs /
-
 RUN curl -LsS http://getcomposer.org/installer | php -- --install-dir=/usr/bin --filename=composer
 RUN curl -LsS http://symfony.com/installer -o /usr/local/bin/symfony && chmod a+x /usr/local/bin/symfony
 
@@ -66,18 +64,20 @@ RUN curl -LsS http://phar.phpunit.de/phpunit-${PHPUNIT5_VERSION}.phar -o /usr/lo
 
 RUN ln -s /usr/local/bin/phpunit5 /usr/local/bin/phpunit
 
-RUN a2enmod rewrite && a2enmod vhost_alias && a2enconf vhost-alias
-
 RUN printf "alias l='ls -CF'\nalias la='ls -A'\nalias ll='ls -alF'\n" >> /etc/bash.bashrc
 RUN printf "if [ -d \"\$HOME/.composer/vendor/bin\" ]; then\n    PATH=\"\$HOME/.composer/vendor/bin:\$PATH\"\nfi" >> /etc/bash.bashrc
+
+RUN printf "export APACHE_RUN_USER=dev\nexport APACHE_RUN_GROUP=dev\n" >> /etc/apache2/envvars
+
+ADD rootfs /
 
 RUN adduser --disabled-password --gecos '' --uid ${DEV_USER_UID} dev \
     && adduser dev sudo \
     && printf "dev ALL=(ALL) NOPASSWD: ALL\n" > /etc/sudoers.d/dev
 
-RUN printf "export APACHE_RUN_USER=dev\nexport APACHE_RUN_GROUP=dev\n" >> /etc/apache2/envvars
-
 RUN chown -R dev:dev /var/lock/apache2 /var/log/apache2
+
+RUN a2enmod rewrite && a2enmod vhost_alias && a2enconf vhost-alias
 
 USER dev
 
