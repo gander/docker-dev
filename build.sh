@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-VERSIONS=( "5.6" "7.0" "7.1" )
+VERSIONS=( "5.6" "7.0" "7.1" "7.2" )
 
 docker login
 

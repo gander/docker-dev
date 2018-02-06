@@ -5,6 +5,7 @@ ARG DEV_USER_UID=1000
 ARG PHING2_VERSION=2.16.0
 ARG PHPUNIT5_VERSION=5.7
 ARG PHPUNIT6_VERSION=6.5
+ARG PHPUNIT7_VERSION=7.0
 
 MAINTAINER Adam Gąsowski <adam.gasowski@gander.pl>
 
@@ -12,8 +13,6 @@ RUN apt-get update \
     && apt-get upgrade -y \
     && apt-get install -y --no-install-recommends \
     openssh-client \
-    postgresql-client \
-    mysql-client \
     sudo \
     git \
     wget \
@@ -30,21 +29,24 @@ RUN apt-get update \
     libtidy-dev \
     && rm -r /var/lib/apt/lists/*
 
-RUN docker-php-ext-install bcmath \
-    && docker-php-ext-install gd \
-    && docker-php-ext-install intl \
-    && docker-php-ext-install mbstring \
-    && docker-php-ext-install mcrypt \
-    && docker-php-ext-install opcache \
-    && docker-php-ext-install pcntl \
-    && docker-php-ext-install pdo_mysql \
-    && docker-php-ext-install pdo_pgsql \
-    && docker-php-ext-install sockets \
-    && docker-php-ext-install zip \
-    && docker-php-ext-install soap \
-    && pecl install xdebug \
-    && pecl install mongodb \
-    && docker-php-ext-enable mongodb
+RUN pecl channel-update pecl.php.net
+
+RUN docker-php-ext-install bcmath
+RUN docker-php-ext-install gd
+RUN docker-php-ext-install intl
+RUN docker-php-ext-install mbstring
+RUN docker-php-ext-install mcrypt
+RUN docker-php-ext-install mysqli
+RUN docker-php-ext-install opcache
+RUN docker-php-ext-install pcntl
+RUN docker-php-ext-install pdo_mysql
+RUN docker-php-ext-install pdo_pgsql
+RUN docker-php-ext-install sockets
+RUN docker-php-ext-install zip
+RUN docker-php-ext-install soap
+RUN pecl install xdebug
+RUN pecl install mongodb
+RUN docker-php-ext-enable mongodb
 
 ADD rootfs /
 
@@ -61,6 +63,7 @@ RUN curl -LsS http://deployer.org/deployer.phar -o /usr/local/bin/dep && chmod +
 
 RUN curl -LsS http://phar.phpunit.de/phpunit-${PHPUNIT5_VERSION}.phar -o /usr/local/bin/phpunit5 && chmod +x /usr/local/bin/phpunit5
 RUN curl -LsS http://phar.phpunit.de/phpunit-${PHPUNIT6_VERSION}.phar -o /usr/local/bin/phpunit6 && chmod +x /usr/local/bin/phpunit6
+RUN curl -LsS http://phar.phpunit.de/phpunit-${PHPUNIT7_VERSION}.phar -o /usr/local/bin/phpunit7 && chmod +x /usr/local/bin/phpunit7
 
 RUN ln -s /usr/local/bin/phpunit5 /usr/local/bin/phpunit
 
