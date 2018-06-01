@@ -44,6 +44,8 @@ RUN docker-php-ext-install -j$(nproc) zip
 RUN pecl install xdebug-2.5.5
 RUN pecl install mongodb
 
+RUN docker-php-ext-enable mongodb
+
 RUN curl -LsS https://getcomposer.org/installer | php -- --install-dir=/usr/bin --filename=composer
 RUN curl -LsS https://symfony.com/installer -o /usr/local/bin/symfony && chmod a+x /usr/local/bin/symfony
 RUN curl -LSs https://box-project.github.io/box2/installer.php | php && mv box.phar /usr/local/bin/box
