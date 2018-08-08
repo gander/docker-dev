@@ -14,6 +14,6 @@ do
     docker build -t "${TAG}" -f "${SRC}" . && docker push "${TAG}"
 done
 
-LATEST="${NAME}:latest";
-
-docker tag "${TAG}" "${LATEST}" && docker push "${LATEST}"
+docker tag "${NAME}:7.2" "${NAME}:latest" && docker push "${NAME}:latest"
+docker tag "${NAME}:7.2" "${NAME}:7" && docker push "${NAME}:7"
+docker tag "${NAME}:5.6" "${NAME}:5" && docker push "${NAME}:5"
