@@ -4,7 +4,7 @@ VERSIONS=( "5.6" "7.0" "7.1" "7.2" )
 
 docker login
 
-NAME="gander/php-apache-dev"
+NAME="gander/dev"
 
 for VER in "${VERSIONS[@]}"
 do
