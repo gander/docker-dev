@@ -51,7 +51,6 @@ RUN pecl install redis
 RUN docker-php-ext-enable memcached
 RUN docker-php-ext-enable mongodb
 RUN docker-php-ext-enable redis
-RUN docker-php-ext-enable xdebug
 
 RUN curl -LsS https://getcomposer.org/installer | php -- --install-dir=/usr/bin --filename=composer
 RUN curl -LsS https://symfony.com/installer -o /usr/local/bin/symfony && chmod a+x /usr/local/bin/symfony
