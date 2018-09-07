@@ -47,6 +47,7 @@ RUN docker-php-ext-install -j$(nproc) zip
 RUN pecl install memcached
 RUN pecl install mongodb
 RUN pecl install redis
+RUN pecl install xdebug
 
 RUN docker-php-ext-enable memcached
 RUN docker-php-ext-enable mongodb
