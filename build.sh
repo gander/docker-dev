@@ -2,7 +2,7 @@
 
 VERSIONS=( "5.6" "7.0" "7.1" "7.2" )
 
-docker login
+docker login -u gander
 
 NAME="gander/dev"
 
