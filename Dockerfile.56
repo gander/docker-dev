@@ -53,7 +53,7 @@ RUN curl -LsS https://getcomposer.org/installer | php -- --install-dir=/usr/bin 
 RUN curl -LsS https://symfony.com/installer -o /usr/local/bin/symfony && chmod a+x /usr/local/bin/symfony
 RUN curl -LSs https://box-project.github.io/box2/installer.php | php && mv box.phar /usr/local/bin/box
 RUN curl -LsS https://robo.li/robo.phar -o /usr/local/bin/robo && chmod +x /usr/local/bin/robo
-RUN curl -LsS https://deployer.org/releases/v4.3.1/deployer.phar -o /usr/local/bin/dep && chmod +x /usr/local/bin/dep
+RUN curl -LsS https://deployer.org/releases/v4.3.4/deployer.phar -o /usr/local/bin/dep && chmod +x /usr/local/bin/dep
 
 RUN curl -LsS https://phar.phpunit.de/phpunit-4.phar -o /usr/local/bin/phpunit4 && chmod +x /usr/local/bin/phpunit4
 RUN curl -LsS https://phar.phpunit.de/phpunit-5.phar -o /usr/local/bin/phpunit5 && chmod +x /usr/local/bin/phpunit5
