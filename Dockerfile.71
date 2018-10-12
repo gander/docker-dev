@@ -2,11 +2,6 @@ FROM php:7.1-apache
 
 ARG DEV_USER_UID=1000
 
-ARG PHING2_VERSION=2.16.0
-ARG PHPUNIT5_VERSION=5.7
-ARG PHPUNIT6_VERSION=6.5
-ARG PHPUNIT7_VERSION=7.0
-
 RUN apt-get update
 RUN apt-get upgrade -y
 RUN apt-get install -y --no-install-recommends \
@@ -20,6 +15,7 @@ RUN apt-get install -y --no-install-recommends \
     libmemcached-dev \
     libpq-dev \
     libxslt-dev \
+    libzip-dev \
     nano \
     openssh-client \
     sudo \
@@ -34,7 +30,6 @@ RUN docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-di
 RUN docker-php-ext-install -j$(nproc) bcmath
 RUN docker-php-ext-install -j$(nproc) gd
 RUN docker-php-ext-install -j$(nproc) intl
-RUN docker-php-ext-install -j$(nproc) mcrypt
 RUN docker-php-ext-install -j$(nproc) mysqli
 RUN docker-php-ext-install -j$(nproc) opcache
 RUN docker-php-ext-install -j$(nproc) pcntl
@@ -44,11 +39,13 @@ RUN docker-php-ext-install -j$(nproc) soap
 RUN docker-php-ext-install -j$(nproc) sockets
 RUN docker-php-ext-install -j$(nproc) zip
 
+RUN pecl install mcrypt-1.0.0
 RUN pecl install memcached
 RUN pecl install mongodb
 RUN pecl install redis
 RUN pecl install xdebug
 
+RUN docker-php-ext-enable mcrypt
 RUN docker-php-ext-enable memcached
 RUN docker-php-ext-enable mongodb
 RUN docker-php-ext-enable redis
@@ -57,13 +54,16 @@ RUN curl -LsS https://getcomposer.org/installer | php -- --install-dir=/usr/bin 
 RUN curl -LsS https://symfony.com/installer -o /usr/local/bin/symfony && chmod a+x /usr/local/bin/symfony
 RUN curl -LSs https://box-project.github.io/box2/installer.php | php && mv box.phar /usr/local/bin/box
 RUN curl -LsS https://robo.li/robo.phar -o /usr/local/bin/robo && chmod +x /usr/local/bin/robo
-RUN curl -LsS https://www.phing.info/get/phing-${PHING2_VERSION}.phar -o /usr/local/bin/phing && chmod +x /usr/local/bin/phing
 RUN curl -LsS https://deployer.org/deployer.phar -o /usr/local/bin/dep && chmod +x /usr/local/bin/dep
-RUN curl -LsS https://phar.phpunit.de/phpunit-${PHPUNIT5_VERSION}.phar -o /usr/local/bin/phpunit5 && chmod +x /usr/local/bin/phpunit5
-RUN curl -LsS https://phar.phpunit.de/phpunit-${PHPUNIT6_VERSION}.phar -o /usr/local/bin/phpunit6 && chmod +x /usr/local/bin/phpunit6
-RUN curl -LsS https://phar.phpunit.de/phpunit-${PHPUNIT7_VERSION}.phar -o /usr/local/bin/phpunit7 && chmod +x /usr/local/bin/phpunit7
 
-RUN ln -s /usr/local/bin/phpunit5 /usr/local/bin/phpunit
+RUN curl -LsS https://phar.phpunit.de/phpunit-5.phar -o /usr/local/bin/phpunit5 && chmod +x /usr/local/bin/phpunit5
+RUN curl -LsS https://phar.phpunit.de/phpunit-6.phar -o /usr/local/bin/phpunit6 && chmod +x /usr/local/bin/phpunit6
+RUN curl -LsS https://phar.phpunit.de/phpunit-7.phar -o /usr/local/bin/phpunit7 && chmod +x /usr/local/bin/phpunit7
+RUN ln -s /usr/local/bin/phpunit7 /usr/local/bin/phpunit
+
+RUN curl -LsS https://www.phing.info/get/phing-2.16.1.phar -o /usr/local/bin/phing2 && chmod +x /usr/local/bin/phing2
+RUN curl -LsS https://www.phing.info/get/phing-3.0.0-alpha1.phar -o /usr/local/bin/phing3 && chmod +x /usr/local/bin/phing3
+RUN ln -s /usr/local/bin/phing2 /usr/local/bin/phing
 
 RUN printf "alias l='ls -CF'\nalias la='ls -A'\nalias ll='ls -alF'\n" >> /etc/bash.bashrc
 RUN printf "if [ -d \"\$HOME/.composer/vendor/bin\" ]; then\n    PATH=\"\$HOME/.composer/vendor/bin:\$PATH\"\nfi\n" >> /etc/bash.bashrc
