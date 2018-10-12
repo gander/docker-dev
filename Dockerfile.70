@@ -75,7 +75,7 @@ RUN adduser --disabled-password --gecos '' --uid ${DEV_USER_UID} dev \
     && adduser dev sudo \
     && printf "dev ALL=(ALL) NOPASSWD: ALL\n" > /etc/sudoers.d/dev
 
-RUN chown -R dev:dev /var/lock/apache2 /var/log/apache2
+RUN chown -R dev:dev /www /var/lock/apache2 /var/log/apache2
 
 RUN a2enmod rewrite && a2enmod vhost_alias && a2enconf vhost-alias
 
