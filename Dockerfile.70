@@ -51,23 +51,18 @@ RUN docker-php-ext-enable memcached
 RUN docker-php-ext-enable mongodb
 RUN docker-php-ext-enable redis
 
-RUN curl -LsS https://getcomposer.org/installer | php -- --install-dir=/usr/bin --filename=composer
-RUN curl -LsS https://symfony.com/installer -o /usr/local/bin/symfony && chmod a+x /usr/local/bin/symfony
-RUN curl -LSs https://box-project.github.io/box2/installer.php | php && mv box.phar /usr/local/bin/box
+ADD rootfs /
+
+RUN /usr/local/bin/docker-install-composer.sh
 
 RUN curl -LsS https://phar.phpunit.de/phpunit-5.phar -o /usr/local/bin/phpunit5 && chmod +x /usr/local/bin/phpunit5
 RUN curl -LsS https://phar.phpunit.de/phpunit-6.phar -o /usr/local/bin/phpunit6 && chmod +x /usr/local/bin/phpunit6
 RUN ln -s /usr/local/bin/phpunit6 /usr/local/bin/phpunit
 
-RUN curl -LsS https://www.phing.info/get/phing-2.16.1.phar -o /usr/local/bin/phing2 && chmod +x /usr/local/bin/phing2
-RUN ln -s /usr/local/bin/phing2 /usr/local/bin/phing
-
 RUN printf "alias l='ls -CF'\nalias la='ls -A'\nalias ll='ls -alF'\n" >> /etc/bash.bashrc
 RUN printf "if [ -d \"\$HOME/.composer/vendor/bin\" ]; then\n    PATH=\"\$HOME/.composer/vendor/bin:\$PATH\"\nfi\n" >> /etc/bash.bashrc
 
 RUN printf "export APACHE_RUN_USER=dev\nexport APACHE_RUN_GROUP=dev\n" >> /etc/apache2/envvars
-
-ADD rootfs /
 
 RUN adduser --disabled-password --gecos '' --uid ${DEV_USER_UID} dev \
     && adduser dev sudo \
