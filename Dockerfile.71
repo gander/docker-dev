@@ -25,7 +25,7 @@ RUN rm -r /var/lib/apt/lists/*
 
 RUN pecl channel-update pecl.php.net
 
-RUN docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/lib/x86_64-linux-gnu/libjpeg.so
+RUN docker-php-ext-configure gd --with-gd --with-jpeg-dir --with-png-dir --with-zlib-dir
 
 RUN docker-php-ext-install -j$(nproc) bcmath
 RUN docker-php-ext-install -j$(nproc) gd
@@ -64,7 +64,7 @@ RUN curl -LsS https://phar.phpunit.de/phpunit-7.phar -o /usr/local/bin/phpunit7 
 RUN ln -s /usr/local/bin/phpunit7 /usr/local/bin/phpunit
 
 RUN curl -LsS https://www.phing.info/get/phing-2.16.1.phar -o /usr/local/bin/phing2 && chmod +x /usr/local/bin/phing2
-RUN curl -LsS https://www.phing.info/get/phing-3.0.0-alpha1.phar -o /usr/local/bin/phing3 && chmod +x /usr/local/bin/phing3
+RUN curl -LsS https://www.phing.info/get/phing-3.0.0-alpha2.phar -o /usr/local/bin/phing3 && chmod +x /usr/local/bin/phing3
 RUN ln -s /usr/local/bin/phing2 /usr/local/bin/phing
 
 RUN printf "alias l='ls -CF'\nalias la='ls -A'\nalias ll='ls -alF'\n" >> /etc/bash.bashrc
