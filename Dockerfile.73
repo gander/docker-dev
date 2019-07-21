@@ -40,14 +40,14 @@ RUN docker-php-ext-install -j$(nproc) sockets
 RUN docker-php-ext-install -j$(nproc) zip
 
 RUN pecl install ast
-#RUN pecl install mcrypt-1.0.1
+RUN pecl install mcrypt-1.0.2
 RUN pecl install memcached
 RUN pecl install mongodb
 RUN pecl install redis
 RUN pecl install xdebug
 
 RUN docker-php-ext-enable ast
-#RUN docker-php-ext-enable mcrypt
+RUN docker-php-ext-enable mcrypt
 RUN docker-php-ext-enable memcached
 RUN docker-php-ext-enable mongodb
 RUN docker-php-ext-enable redis
