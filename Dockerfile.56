@@ -13,11 +13,16 @@ RUN apt-get install -y --no-install-recommends \
     libjpeg62-turbo-dev \
     libmcrypt-dev \
     libmemcached-dev \
+    libpng-dev \
     libpq-dev \
     libxslt-dev \
     libzip-dev \
     nano \
     openssh-client \
+    python \
+    python-pip \
+    python-setuptools \
+    screen \
     sudo \
     unzip \
     wget
@@ -25,7 +30,7 @@ RUN rm -r /var/lib/apt/lists/*
 
 RUN pecl channel-update pecl.php.net
 
-RUN docker-php-ext-configure gd --with-gd --with-jpeg-dir --with-png-dir --with-zlib-dir
+RUN docker-php-ext-configure gd --with-freetype-dir --with-gd --with-jpeg-dir --with-png-dir --with-zlib-dir
 
 RUN docker-php-ext-install -j$(nproc) bcmath
 RUN docker-php-ext-install -j$(nproc) gd
