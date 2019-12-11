@@ -2,7 +2,9 @@
 PHP, Apache, dev user (1000)
 
 ## Supported tags:
-* `7.2`, `7`, `latest`
+* `7.4`, `7`, `latest`
+* `7.3`
+* `7.2`
 * `7.1`
 * `7.0`
 * `5.6`, `5`
