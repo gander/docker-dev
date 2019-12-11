@@ -15,3 +15,5 @@ done
 docker tag "${NAME}:${VER}" "${NAME}:latest" && docker push "${NAME}:latest"
 docker tag "${NAME}:${VER}" "${NAME}:7" && docker push "${NAME}:7"
 docker tag "${NAME}:5.6" "${NAME}:5" && docker push "${NAME}:5"
+
+echo "Done"
