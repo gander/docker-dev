@@ -56,7 +56,8 @@ RUN docker-php-ext-enable redis
 
 ADD rootfs /
 
-RUN /usr/local/bin/docker-install-composer.sh
+RUN bash /usr/local/bin/docker-install-composer.sh
+RUN rm /usr/local/bin/docker-install-symfony.sh
 
 RUN curl -LsS https://phar.phpunit.de/phpunit-4.phar -o /usr/local/bin/phpunit4 && chmod +x /usr/local/bin/phpunit4
 RUN curl -LsS https://phar.phpunit.de/phpunit-5.phar -o /usr/local/bin/phpunit5 && chmod +x /usr/local/bin/phpunit5
