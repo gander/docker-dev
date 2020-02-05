@@ -7,79 +7,94 @@ RUN apt-get upgrade -y
 RUN apt-get install -y --no-install-recommends \
     curl \
     git \
-    htop \
-    libfreetype6-dev \
-    libicu-dev \
-    libjpeg-dev \
-    libmcrypt-dev \
-    libmemcached-dev \
-    libpng-dev \
-    libtiff-dev \
-    libpq-dev \
-    libwebp-dev \
-    libxpm-dev \
-    libxslt-dev \
-    libzip-dev \
     nano \
     openssh-client \
-    python \
-    python-pip \
-    python-setuptools \
     screen \
     sudo \
     unzip \
     wget
-RUN rm -r /var/lib/apt/lists/*
 
 RUN /usr/sbin/update-ca-certificates
 
 RUN pecl channel-update pecl.php.net
 
-RUN docker-php-ext-configure gd --with-freetype-dir --with-jpeg-dir --with-png-dir --with-zlib-dir --with-gd
+RUN pecl install ast \
+    && docker-php-ext-enable ast
 
 RUN docker-php-ext-install -j$(nproc) bcmath
-RUN docker-php-ext-install -j$(nproc) gd
-RUN docker-php-ext-install -j$(nproc) intl
-RUN docker-php-ext-install -j$(nproc) mcrypt
+
+RUN apt-get install -y --no-install-recommends \
+        libfreetype6-dev \
+        libjpeg-dev \
+        libpng-dev \
+        libtiff-dev \
+        libwebp-dev \
+        libxpm-dev \
+    && docker-php-ext-configure gd \
+        --with-freetype-dir \
+        --with-jpeg-dir \
+        --with-png-dir \
+        --with-zlib-dir \
+        --with-webp-dir \
+        --with-xpm-dir \
+        --with-gd \
+    && docker-php-ext-install -j$(nproc) gd
+
+
+
+RUN apt-get install -y --no-install-recommends libicu-dev \
+    && docker-php-ext-install -j$(nproc) intl
+
+RUN apt-get install -y --no-install-recommends libmcrypt-dev \
+    && pecl install mcrypt \
+    && docker-php-ext-enable mcrypt
+
+RUN apt-get install -y --no-install-recommends libmemcached-dev \
+    && pecl install memcached-2.2.0 \
+    && docker-php-ext-enable memcached
+
+RUN pecl install mongodb \
+    && docker-php-ext-enable mongodb
+
 RUN docker-php-ext-install -j$(nproc) mysqli
+
 RUN docker-php-ext-install -j$(nproc) opcache
+
 RUN docker-php-ext-install -j$(nproc) pcntl
+
 RUN docker-php-ext-install -j$(nproc) pdo_mysql
-RUN docker-php-ext-install -j$(nproc) pdo_pgsql
-RUN docker-php-ext-install -j$(nproc) soap
+
+RUN apt-get install -y --no-install-recommends libpq-dev \
+    && docker-php-ext-install -j$(nproc) pdo_pgsql
+
+RUN pecl install redis-4.3.0 \
+    && docker-php-ext-enable redis
+
+RUN apt-get install -y --no-install-recommends libxml2-dev \
+    && docker-php-ext-install -j$(nproc) soap
+
 RUN docker-php-ext-install -j$(nproc) sockets
-RUN docker-php-ext-install -j$(nproc) zip
 
-RUN pecl install memcached-2.2.0
-RUN pecl install mongodb
-RUN pecl install redis-4.3.0
+RUN apt-get install -y --no-install-recommends libxslt-dev \
+    && docker-php-ext-install -j$(nproc) xsl
+
+RUN apt-get install -y --no-install-recommends libzip-dev \
+    && docker-php-ext-install -j$(nproc) zip
+
 RUN pecl install xdebug-2.5.5
-
-RUN docker-php-ext-enable memcached
-RUN docker-php-ext-enable mongodb
-RUN docker-php-ext-enable redis
 
 ADD rootfs /
 
-RUN bash /usr/local/bin/docker-install-composer.sh
-RUN rm /usr/local/bin/docker-install-symfony.sh
+RUN bash \
+    /docker-build/00-user.sh \
+    /docker-build/10-bash.sh \
+    /docker-build/20-apache.sh \
+    /docker-build/50-composer.sh \
+    /docker-build/70-phpunit.sh 7
 
-RUN curl -LsS https://phar.phpunit.de/phpunit-4.phar -o /usr/local/bin/phpunit4 && chmod +x /usr/local/bin/phpunit4
-RUN curl -LsS https://phar.phpunit.de/phpunit-5.phar -o /usr/local/bin/phpunit5 && chmod +x /usr/local/bin/phpunit5
-RUN ln -s /usr/local/bin/phpunit5 /usr/local/bin/phpunit
-
-RUN printf "alias l='ls -CF'\nalias la='ls -A'\nalias ll='ls -alF'\n" >> /etc/bash.bashrc
-RUN printf "if [ -d \"\$HOME/.composer/vendor/bin\" ]; then\n    PATH=\"\$HOME/.composer/vendor/bin:\$PATH\"\nfi\n" >> /etc/bash.bashrc
-
-RUN printf "export APACHE_RUN_USER=dev\nexport APACHE_RUN_GROUP=dev\n" >> /etc/apache2/envvars
-
-RUN adduser --disabled-password --gecos '' --uid ${DEV_USER_UID} dev \
-    && adduser dev sudo \
-    && printf "dev ALL=(ALL) NOPASSWD: ALL\n" > /etc/sudoers.d/dev
-
-RUN chown -R dev:dev /www /var/lock/apache2 /var/log/apache2
-
-RUN a2enmod rewrite && a2enmod vhost_alias && a2enconf vhost-alias
+RUN apt-get autoremove -y
+RUN apt-get autoclean -y
+RUN rm -r /var/lib/apt/lists/*
 
 USER dev
 
@@ -88,3 +103,4 @@ WORKDIR /www
 
 EXPOSE 80
 CMD ["sudo", "apache2-foreground"]
+

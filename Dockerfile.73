@@ -4,8 +4,6 @@ ARG DEV_USER_UID=1000
 
 RUN apt-get update
 RUN apt-get upgrade -y
-RUN apt-get autoremove -y
-RUN apt-get autoclean -y
 RUN apt-get install -y --no-install-recommends \
     curl \
     git \
@@ -19,6 +17,11 @@ RUN apt-get install -y --no-install-recommends \
 RUN /usr/sbin/update-ca-certificates
 
 RUN pecl channel-update pecl.php.net
+
+RUN pecl install ast \
+    && docker-php-ext-enable ast
+
+RUN docker-php-ext-install -j$(nproc) bcmath
 
 RUN apt-get install -y --no-install-recommends \
         libfreetype6-dev \
@@ -37,31 +40,10 @@ RUN apt-get install -y --no-install-recommends \
         --with-gd \
     && docker-php-ext-install -j$(nproc) gd
 
+
+
 RUN apt-get install -y --no-install-recommends libicu-dev \
     && docker-php-ext-install -j$(nproc) intl
-
-RUN apt-get install -y --no-install-recommends libpq-dev \
-    && docker-php-ext-install -j$(nproc) pdo_pgsql
-
-RUN docker-php-ext-install -j$(nproc) bcmath
-RUN docker-php-ext-install -j$(nproc) mysqli
-RUN docker-php-ext-install -j$(nproc) opcache
-RUN docker-php-ext-install -j$(nproc) pcntl
-RUN docker-php-ext-install -j$(nproc) pdo_mysql
-
-RUN apt-get install -y --no-install-recommends libxml2-dev \
-    && docker-php-ext-install -j$(nproc) soap
-
-RUN docker-php-ext-install -j$(nproc) sockets
-
-RUN apt-get install -y --no-install-recommends libxslt-dev \
-    && docker-php-ext-install -j$(nproc) xsl
-
-RUN apt-get install -y --no-install-recommends libzip-dev \
-    && docker-php-ext-install -j$(nproc) zip
-
-RUN pecl install ast \
-    && docker-php-ext-enable ast
 
 RUN apt-get install -y --no-install-recommends libmcrypt-dev \
     && pecl install mcrypt-1.0.2 \
@@ -74,8 +56,30 @@ RUN apt-get install -y --no-install-recommends libmemcached-dev \
 RUN pecl install mongodb \
     && docker-php-ext-enable mongodb
 
+RUN docker-php-ext-install -j$(nproc) mysqli
+
+RUN docker-php-ext-install -j$(nproc) opcache
+
+RUN docker-php-ext-install -j$(nproc) pcntl
+
+RUN docker-php-ext-install -j$(nproc) pdo_mysql
+
+RUN apt-get install -y --no-install-recommends libpq-dev \
+    && docker-php-ext-install -j$(nproc) pdo_pgsql
+
 RUN pecl install redis \
     && docker-php-ext-enable redis
+
+RUN apt-get install -y --no-install-recommends libxml2-dev \
+    && docker-php-ext-install -j$(nproc) soap
+
+RUN docker-php-ext-install -j$(nproc) sockets
+
+RUN apt-get install -y --no-install-recommends libxslt-dev \
+    && docker-php-ext-install -j$(nproc) xsl
+
+RUN apt-get install -y --no-install-recommends libzip-dev \
+    && docker-php-ext-install -j$(nproc) zip
 
 RUN pecl install xdebug
 
@@ -89,6 +93,8 @@ RUN bash \
     /docker-build/60-symfony.sh \
     /docker-build/70-phpunit.sh 7
 
+RUN apt-get autoremove -y
+RUN apt-get autoclean -y
 RUN rm -r /var/lib/apt/lists/*
 
 USER dev
