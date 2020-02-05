@@ -26,17 +26,14 @@ RUN docker-php-ext-install -j$(nproc) bcmath
 RUN apt-get install -y --no-install-recommends \
         libfreetype6-dev \
         libjpeg-dev \
-        libpng-dev \
         libtiff-dev \
         libwebp-dev \
         libxpm-dev \
     && docker-php-ext-configure gd \
-        --with-freetype-dir \
-        --with-jpeg-dir \
-        --with-png-dir \
-        --with-zlib-dir \
-        --with-webp-dir \
-        --with-xpm-dir \
+        --with-freetype \
+        --with-jpeg \
+        --with-webp \
+        --with-xpm \
         --enable-gd \
     && docker-php-ext-install -j$(nproc) gd
 

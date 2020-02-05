@@ -18,9 +18,6 @@ RUN /usr/sbin/update-ca-certificates
 
 RUN pecl channel-update pecl.php.net
 
-RUN pecl install ast \
-    && docker-php-ext-enable ast
-
 RUN docker-php-ext-install -j$(nproc) bcmath
 
 RUN apt-get install -y --no-install-recommends \
