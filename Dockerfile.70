@@ -40,8 +40,6 @@ RUN apt-get install -y --no-install-recommends \
         --with-gd \
     && docker-php-ext-install -j$(nproc) gd
 
-
-
 RUN apt-get install -y --no-install-recommends libicu-dev \
     && docker-php-ext-install -j$(nproc) intl
 
@@ -85,13 +83,12 @@ RUN pecl install xdebug
 
 ADD rootfs /
 
-RUN bash \
-    /docker-build/00-user.sh \
-    /docker-build/10-bash.sh \
-    /docker-build/20-apache.sh \
-    /docker-build/50-composer.sh \
-    /docker-build/60-symfony.sh \
-    /docker-build/70-phpunit.sh 5 6
+RUN bash /docker-build/00-user.sh
+RUN bash /docker-build/10-bash.sh
+RUN bash /docker-build/20-apache.sh
+RUN bash /docker-build/50-composer.sh
+RUN bash /docker-build/60-symfony.sh
+RUN bash /docker-build/70-phpunit.sh 5 6
 
 RUN apt-get autoremove -y
 RUN apt-get autoclean -y
