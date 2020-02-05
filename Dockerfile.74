@@ -34,6 +34,7 @@ RUN apt-get install -y --no-install-recommends \
         --with-jpeg \
         --with-webp \
         --with-xpm \
+        --enable-gd-jis-conv \
         --enable-gd \
     && docker-php-ext-install -j$(nproc) gd
 
