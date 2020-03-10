@@ -6,7 +6,6 @@ ENV TERM=xterm-256color
 RUN apt-get update
 RUN apt-get upgrade -y
 RUN apt-get install -y --no-install-recommends \
-    cron \
     curl \
     git \
     nano \
@@ -101,5 +100,5 @@ VOLUME /www
 WORKDIR /www
 
 EXPOSE 80
-CMD ["sudo", "apache2-foreground-with-cron"]
+CMD ["sudo", "apache2-foreground"]
 
