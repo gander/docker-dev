@@ -30,4 +30,7 @@ for VER in "${VERSIONS[@]}"; do
   image_push "${TAG}"
 done
 
+docker tag "${TAG}" "${NAME}:latest"
+image_push "${NAME}:latest"
+
 echo "Done"
