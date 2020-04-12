@@ -46,6 +46,9 @@ RUN apt-get install -y --no-install-recommends \
 RUN apt-get install -y --no-install-recommends libicu-dev \
     && docker-php-ext-install -j$(nproc) intl
 
+RUN apt-get install -y --no-install-recommends libmcrypt-dev \
+    && docker-php-ext-install -j$(nproc) mcrypt
+
 RUN apt-get install -y --no-install-recommends libmemcached-dev \
     && pecl install memcached \
     && docker-php-ext-enable memcached
