@@ -8,6 +8,7 @@ RUN apt-get upgrade -y
 RUN apt-get install -y --no-install-recommends \
     curl \
     git \
+    htop \
     nano \
     openssh-client \
     screen \
