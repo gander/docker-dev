@@ -7,6 +7,6 @@
 
 chown -R dev:dev /www /var/lock/apache2 /var/log/apache2
 
-a2enmod rewrite
-a2enmod vhost_alias
-a2enconf vhost-alias
+a2enmod rewrite &&
+  a2enmod vhost_alias &&
+  a2enconf vhost-alias

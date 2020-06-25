@@ -1,8 +1,12 @@
 #!/usr/bin/env bash
 
-for ver in "$@"; do
-  curl -LsS "https://phar.phpunit.de/phpunit-${ver}.phar" -o "/usr/local/bin/phpunit${ver}"
-  chmod +x "/usr/local/bin/phpunit${ver}"
-done
+if [ ${#} -gt 0 ]; then
 
-ln -s "/usr/local/bin/phpunit${ver}" "/usr/local/bin/phpunit"
+  for ver in "$@"; do
+    curl -LsS "https://phar.phpunit.de/phpunit-${ver}.phar" -o "/usr/local/bin/phpunit${ver}"
+    chmod +x "/usr/local/bin/phpunit${ver}"
+  done
+
+  ln -s "/usr/local/bin/phpunit${ver}" "/usr/local/bin/phpunit"
+
+fi
