@@ -20,6 +20,9 @@ RUN /usr/sbin/update-ca-certificates
 
 RUN pecl channel-update pecl.php.net
 
+RUN pecl install apcu-4.0.11 \
+    && docker-php-ext-enable apcu
+
 RUN docker-php-ext-install -j$(nproc) bcmath
 
 RUN apt-get install -y --no-install-recommends \

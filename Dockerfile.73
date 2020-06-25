@@ -20,6 +20,9 @@ RUN /usr/sbin/update-ca-certificates
 
 RUN pecl channel-update pecl.php.net
 
+RUN pecl install apcu \
+    && docker-php-ext-enable apcu
+
 RUN pecl install ast \
     && docker-php-ext-enable ast
 
