@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-VERSIONS=("7.4" "7.3" "7.2" "7.1" "7.0" "5.6")
+VERSIONS=("7.4" "7.3" "7.2" "7.1" "7.0" "5.6" "8.0-rc")
 
 NAME="gander/dev"
 
