@@ -49,6 +49,8 @@ RUN apt-get install -y --no-install-recommends \
 RUN apt-get install -y --no-install-recommends libicu-dev \
     && docker-php-ext-install -j$(nproc) intl
 
+RUN docker-php-ext-install -j$(nproc) mbstring
+
 RUN apt-get install -y --no-install-recommends libmcrypt-dev \
     && docker-php-ext-install -j$(nproc) mcrypt
 

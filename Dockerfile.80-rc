@@ -57,6 +57,9 @@ RUN apt-get install -y --no-install-recommends libicu-dev \
 #RUN pecl install mongodb \
 #    && docker-php-ext-enable mongodb
 
+RUN apt-get install -y --no-install-recommends libonig-dev \
+    && docker-php-ext-install -j$(nproc) mbstring
+
 RUN docker-php-ext-install -j$(nproc) mysqli
 
 RUN docker-php-ext-install -j$(nproc) opcache
