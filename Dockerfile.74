@@ -94,7 +94,7 @@ RUN bash /docker-build/10-bash.sh
 RUN bash /docker-build/20-apache.sh
 RUN bash /docker-build/50-composer.sh
 RUN bash /docker-build/60-symfony.sh
-RUN bash /docker-build/70-phpunit.sh 7
+RUN bash /docker-build/70-phpunit.sh 8 9
 
 RUN rm -r /var/lib/apt/lists/* /docker-build
 

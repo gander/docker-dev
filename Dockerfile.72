@@ -52,7 +52,7 @@ RUN apt-get install -y --no-install-recommends libicu-dev \
 RUN docker-php-ext-install -j$(nproc) mbstring
 
 RUN apt-get install -y --no-install-recommends libmcrypt-dev \
-    && pecl install mcrypt-1.0.2 \
+    && pecl install mcrypt-1.0.3 \
     && docker-php-ext-enable mcrypt
 
 RUN apt-get install -y --no-install-recommends libmemcached-dev \
@@ -96,7 +96,7 @@ RUN bash /docker-build/10-bash.sh
 RUN bash /docker-build/20-apache.sh
 RUN bash /docker-build/50-composer.sh
 RUN bash /docker-build/60-symfony.sh
-RUN bash /docker-build/70-phpunit.sh 6 7
+RUN bash /docker-build/70-phpunit.sh 6 7 8
 
 RUN rm -r /var/lib/apt/lists/* /docker-build
 
