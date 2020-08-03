@@ -56,7 +56,7 @@ RUN apt-get install -y --no-install-recommends libmemcached-dev \
     && pecl install memcached-2.2.0 \
     && docker-php-ext-enable memcached
 
-RUN pecl install mongodb \
+RUN pecl install mongodb-1.7.5 \
     && docker-php-ext-enable mongodb
 
 RUN docker-php-ext-install -j$(nproc) mysqli
