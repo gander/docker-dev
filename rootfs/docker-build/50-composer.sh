@@ -12,7 +12,7 @@ if [[ "${EXPECTED_SIGNATURE}" != "${ACTUAL_SIGNATURE}" ]]; then
 fi
 
 php composer-setup.php --quiet --install-dir=/usr/local/bin --filename=composer &&
-  php composer-setup.php --quiet --install-dir=/usr/local/bin --filename=composer2 --version=2.0.0-alpha2 &&
+  php composer-setup.php --quiet --install-dir=/usr/local/bin --filename=composer2 --version=2.0.0-alpha3 &&
   ln -s /usr/local/bin/composer /usr/local/bin/composer1
 RESULT=$?
 
