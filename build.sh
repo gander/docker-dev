@@ -16,6 +16,7 @@ image_create() {
     exit 2
   fi
 
+  docker pull "php:${1}-apache"
   image_build "${TAG}" "${SRC}"
   image_push "${TAG}"
 
