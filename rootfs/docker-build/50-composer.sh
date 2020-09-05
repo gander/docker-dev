@@ -11,15 +11,10 @@ if [[ "${EXPECTED_SIGNATURE}" != "${ACTUAL_SIGNATURE}" ]]; then
   exit 1
 fi
 
-php composer-setup.php --quiet --install-dir=/usr/local/bin --filename=composer &&
-  php composer-setup.php --quiet --install-dir=/usr/local/bin --filename=composer2 --version=2.0.0-alpha3 &&
-  ln -s /usr/local/bin/composer /usr/local/bin/composer1
-RESULT=$?
+php composer-setup.php --quiet --install-dir=/usr/local/bin --filename=composer --stable
+php composer-setup.php --quiet --install-dir=/usr/local/bin --filename=composer1 --1
+php composer-setup.php --quiet --install-dir=/usr/local/bin --filename=composer2 --2
+
+printf "if [ -d \"\$HOME/.composer/vendor/bin\" ]; then\n    PATH=\"\$HOME/.composer/vendor/bin:\$PATH\"\nfi\n" >>/etc/bash.bashrc
 
 rm composer-setup.php
-
-if [ $RESULT -eq 0 ]; then
-  printf "if [ -d \"\$HOME/.composer/vendor/bin\" ]; then\n    PATH=\"\$HOME/.composer/vendor/bin:\$PATH\"\nfi\n" >>/etc/bash.bashrc
-fi
-
-exit ${RESULT}
