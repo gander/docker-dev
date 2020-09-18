@@ -97,6 +97,11 @@ RUN bash /docker-build/20-apache.sh
 RUN bash /docker-build/50-composer.sh
 RUN bash /docker-build/60-symfony.sh
 RUN bash /docker-build/70-phpunit.sh 8 9
+RUN bash /docker-build/80-pickle.sh
+
+RUN pickle install apcu -n && docker-php-ext-enable apcu
+RUN pickle install ast -n && docker-php-ext-enable ast
+RUN apt-get install -y --no-install-recommends libmemcached-dev && pickle install memcached -n && docker-php-ext-enable memcached
 
 RUN rm -r /var/lib/apt/lists/* /docker-build
 
