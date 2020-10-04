@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+set -e
+
 VERSIONS=("7.4" "7.3" "7.2" "7.1" "7.0" "5.6" "8.0-rc")
 
 NAME="gander/dev"
@@ -18,11 +20,9 @@ image_create() {
 
   docker pull "php:${1}-apache"
   image_build "${TAG}" "${SRC}"
-  image_push "${TAG}"
 
   if [ "${1}" == "${VERSIONS[0]}" ]; then
     docker tag "${TAG}" "${NAME}:latest"
-    image_push "${NAME}:latest"
   fi
 }
 
@@ -54,9 +54,23 @@ if [ ${#} -gt 0 ]; then
   for VER in "${@}"; do
     image_create "${VER}"
   done
+  for VER in "${@}"; do
+    image_push "${NAME}:${VER}"
+    if [ "${VER}" == "${VERSIONS[0]}" ]; then
+      docker tag "${NAME}:${VER}" "${NAME}:latest"
+      image_push "${NAME}:latest"
+    fi
+  done
 else
   for VER in "${VERSIONS[@]}"; do
     image_create "${VER}"
+  done
+  for VER in "${VERSIONS[@]}"; do
+    image_push "${NAME}:${VER}"
+    if [ "${VER}" == "${VERSIONS[0]}" ]; then
+      docker tag "${NAME}:${VER}" "${NAME}:latest"
+      image_push "${NAME}:latest"
+    fi
   done
 fi
 
