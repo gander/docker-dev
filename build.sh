@@ -22,7 +22,7 @@ image_create() {
   echo "################################   PULL   php:${1}-apache   ################################"
   echo
 
-  echo docker pull "php:${1}-apache"
+  docker pull "php:${1}-apache"
 
   image_build "${TAG}" "${SRC}"
 
