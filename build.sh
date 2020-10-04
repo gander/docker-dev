@@ -18,7 +18,12 @@ image_create() {
     exit 2
   fi
 
-  docker pull "php:${1}-apache"
+  echo
+  echo "################################   PULL   php:${1}-apache   ################################"
+  echo
+
+  echo docker pull "php:${1}-apache"
+
   image_build "${TAG}" "${SRC}"
 
   if [ "${1}" == "${VERSIONS[0]}" ]; then
@@ -50,28 +55,32 @@ image_push() {
   docker push "${1}"
 }
 
+images_create() {
+  for VER in "${@}"; do
+    if [ "${VER}" == "${VERSIONS[0]}" ]; then
+      docker tag "${NAME}:${VER}" "${NAME}:latest"
+    fi
+
+    image_create "${VER}"
+  done
+}
+
+images_push() {
+  for VER in "${@}"; do
+    if [ "${VER}" == "${VERSIONS[0]}" ]; then
+      image_push "${NAME}:latest"
+    fi
+
+    image_push "${NAME}:${VER}"
+  done
+}
+
 if [ ${#} -gt 0 ]; then
-  for VER in "${@}"; do
-    image_create "${VER}"
-  done
-  for VER in "${@}"; do
-    image_push "${NAME}:${VER}"
-    if [ "${VER}" == "${VERSIONS[0]}" ]; then
-      docker tag "${NAME}:${VER}" "${NAME}:latest"
-      image_push "${NAME}:latest"
-    fi
-  done
+  images_create "${@}"
+  images_push "${@}"
 else
-  for VER in "${VERSIONS[@]}"; do
-    image_create "${VER}"
-  done
-  for VER in "${VERSIONS[@]}"; do
-    image_push "${NAME}:${VER}"
-    if [ "${VER}" == "${VERSIONS[0]}" ]; then
-      docker tag "${NAME}:${VER}" "${NAME}:latest"
-      image_push "${NAME}:latest"
-    fi
-  done
+  images_create "${VERSIONS[@]}"
+  images_push "${VERSIONS[@]}"
 fi
 
 echo "Done"
