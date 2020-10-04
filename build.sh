@@ -57,11 +57,11 @@ image_push() {
 
 images_create() {
   for VER in "${@}"; do
+    image_create "${VER}"
+
     if [ "${VER}" == "${VERSIONS[0]}" ]; then
       docker tag "${NAME}:${VER}" "${NAME}:latest"
     fi
-
-    image_create "${VER}"
   done
 }
 
