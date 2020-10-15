@@ -18,12 +18,6 @@ image_create() {
     exit 2
   fi
 
-  echo
-  echo "################################   PULL   php:${1}-apache   ################################"
-  echo
-
-  docker pull "php:${1}-apache"
-
   image_build "${TAG}" "${SRC}"
 
   if [ "${1}" == "${VERSIONS[0]}" ]; then
@@ -55,6 +49,16 @@ image_push() {
   docker push "${1}"
 }
 
+images_pull() {
+  for VER in "${@}"; do
+    echo
+    echo "################################   PULL   php:${VER}-apache   ################################"
+    echo
+
+    docker pull "php:${VER}-apache"
+  done
+}
+
 images_create() {
   for VER in "${@}"; do
     image_create "${VER}"
@@ -76,9 +80,11 @@ images_push() {
 }
 
 if [ ${#} -gt 0 ]; then
+  images_pull "${@}"
   images_create "${@}"
   images_push "${@}"
 else
+  images_pull "${VERSIONS[@]}"
   images_create "${VERSIONS[@]}"
   images_push "${VERSIONS[@]}"
 fi
