@@ -94,12 +94,14 @@ RUN bash /docker-build/20-apache.sh
 RUN bash /docker-build/50-composer.sh
 RUN bash /docker-build/70-phpunit.sh 4 5
 
-RUN rm -r /var/lib/apt/lists/* /docker-build
+RUN rm -r /var/lib/apt/lists/*
 
 RUN apt-get autoremove -y
 RUN apt-get autoclean -y
 
 USER dev
+
+RUN bash /docker-build/composer-global.sh 'laravel/installer'
 
 VOLUME /www
 WORKDIR /www

@@ -15,6 +15,6 @@ php composer-setup.php --quiet --install-dir=/usr/local/bin --filename=composer 
 php composer-setup.php --quiet --install-dir=/usr/local/bin --filename=composer1 --1
 php composer-setup.php --quiet --install-dir=/usr/local/bin --filename=composer2 --2
 
-printf "if [ -d \"\$HOME/.composer/vendor/bin\" ]; then\n    PATH=\"\$HOME/.composer/vendor/bin:\$PATH\"\nfi\n" >>/etc/bash.bashrc
+printf "if [ -d \"\$HOME/.composer/vendor/bin\" ]; then\n    PATH=\"\$PATH:\$HOME/.composer/vendor/bin\"\nfi\n" >>/etc/bash.bashrc
 
 rm composer-setup.php

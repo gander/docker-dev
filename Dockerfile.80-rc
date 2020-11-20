@@ -103,12 +103,14 @@ RUN pickle install apcu -n && docker-php-ext-enable apcu
 RUN pickle install ast -n && docker-php-ext-enable ast
 RUN apt-get install -y --no-install-recommends libmemcached-dev && pickle install memcached -n && docker-php-ext-enable memcached
 
-RUN rm -r /var/lib/apt/lists/* /docker-build
+RUN rm -r /var/lib/apt/lists/*
 
 RUN apt-get autoremove -y
 RUN apt-get autoclean -y
 
 USER dev
+
+RUN bash /docker-build/composer-global.sh 'laravel/installer'
 
 VOLUME /www
 WORKDIR /www
