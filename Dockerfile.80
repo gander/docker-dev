@@ -1,4 +1,4 @@
-FROM php:8.0-rc-apache
+FROM php:8.0-apache
 
 ARG DEV_USER_UID=1000
 ENV TERM=xterm-256color
