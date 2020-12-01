@@ -54,6 +54,7 @@ RUN apt-get install -y --no-install-recommends libicu-dev \
 
 RUN docker-php-ext-install -j$(nproc) mbstring
 
+# mcrypt DEPRECATED 7.1 => REMOVED 7.2
 RUN apt-get install -y --no-install-recommends libmcrypt-dev \
     && pecl install mcrypt-1.0.3 \
     && docker-php-ext-enable mcrypt
