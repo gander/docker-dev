@@ -100,7 +100,6 @@ RUN bash /docker-build/20-apache.sh
 RUN bash /docker-build/50-composer.sh
 RUN bash /docker-build/60-symfony.sh
 RUN bash /docker-build/70-phpunit.sh 6 7 8
-RUN bash /docker-build/80-pickle.sh
 
 RUN rm -r /var/lib/apt/lists/*
 
