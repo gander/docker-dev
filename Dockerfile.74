@@ -28,6 +28,9 @@ RUN pecl install ast \
 
 RUN docker-php-ext-install -j$(nproc) bcmath
 
+RUN apt-get install -y --no-install-recommends exiftool \
+    && docker-php-ext-install -j$(nproc) exif
+
 RUN apt-get install -y --no-install-recommends \
         libfreetype6-dev \
         libjpeg-dev \
