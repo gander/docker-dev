@@ -2,7 +2,8 @@
 PHP, Apache, dev user (1000)
 
 ## Supported tags:
-* `7.4`, `latest`
+* `8.0`, `latest`
+* `7.4`
 * `7.3`
 * `7.2`
 * `7.1`
@@ -29,13 +30,6 @@ services:
             - '.:/www'
         ports:
             - '8056:80'
-    dev70:
-        container_name: 'dev70'
-        image: 'gander/dev:7.0'
-        volumes:
-            - '.:/www'
-        ports:
-            - '8070:80'
     dev74:
         container_name: 'dev74'
         image: 'gander/dev:7.4'
@@ -43,4 +37,11 @@ services:
             - '.:/www'
         ports:
             - '8074:80'
+    dev80:
+        container_name: 'dev80'
+        image: 'gander/dev:8.0'
+        volumes:
+            - '.:/www'
+        ports:
+            - '8080:80'
 ```
