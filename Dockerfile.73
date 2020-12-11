@@ -18,84 +18,41 @@ RUN apt-get install -y --no-install-recommends \
 
 RUN /usr/sbin/update-ca-certificates
 
-RUN pecl channel-update pecl.php.net
+ADD https://github.com/mlocati/docker-php-extension-installer/releases/latest/download/install-php-extensions /usr/local/bin/
+RUN chmod +x /usr/local/bin/install-php-extensions
 
-RUN pecl install apcu \
-    && docker-php-ext-enable apcu
-
-RUN pecl install ast \
-    && docker-php-ext-enable ast
-
-RUN docker-php-ext-install -j$(nproc) bcmath
-
-RUN apt-get install -y --no-install-recommends exiftool \
-    && docker-php-ext-install -j$(nproc) exif
-
-RUN apt-get install -y --no-install-recommends \
-        libfreetype6-dev \
-        libjpeg-dev \
-        libpng-dev \
-        libtiff-dev \
-        libwebp-dev \
-        libxpm-dev \
-    && docker-php-ext-configure gd \
-        --with-freetype-dir \
-        --with-jpeg-dir \
-        --with-png-dir \
-        --with-zlib-dir \
-        --with-webp-dir \
-        --with-xpm-dir \
-        --enable-gd-jis-conv \
-        --with-gd \
-    && docker-php-ext-install -j$(nproc) gd
-
-RUN apt-get install -y --no-install-recommends libicu-dev \
-    && docker-php-ext-install -j$(nproc) intl
-
-RUN docker-php-ext-install -j$(nproc) mbstring
-
-# mcrypt DEPRECATED 7.1 => REMOVED 7.2
-RUN apt-get install -y --no-install-recommends libmcrypt-dev \
-    && pecl install mcrypt-1.0.3 \
-    && docker-php-ext-enable mcrypt
-
-RUN apt-get install -y --no-install-recommends libmemcached-dev \
-    && pecl install memcached \
-    && docker-php-ext-enable memcached
-
-RUN pecl install mongodb \
-    && docker-php-ext-enable mongodb
-
-RUN docker-php-ext-install -j$(nproc) mysqli
-
-RUN docker-php-ext-install -j$(nproc) opcache
-
-RUN docker-php-ext-install -j$(nproc) pcntl
-
-RUN docker-php-ext-install -j$(nproc) pdo_mysql
-
-RUN apt-get install -y --no-install-recommends libpq-dev \
-    && docker-php-ext-install -j$(nproc) pdo_pgsql
-
-RUN pecl install redis \
-    && docker-php-ext-enable redis
-
-RUN apt-get install -y --no-install-recommends libxml2-dev \
-    && docker-php-ext-install -j$(nproc) soap
-
-RUN docker-php-ext-install -j$(nproc) sockets
-
-RUN apt-get install -y --no-install-recommends libxslt-dev \
-    && docker-php-ext-install -j$(nproc) xsl
-
-RUN apt-get install -y --no-install-recommends libzip-dev \
-    && docker-php-ext-install -j$(nproc) zip
-
-RUN pecl install xdebug
+RUN install-php-extensions \
+ apcu \
+ ast \
+ bcmath \
+ exif \
+ gd \
+ intl \
+ mbstring \
+ mcrypt \
+ memcached \
+ mongodb \
+ mysqli \
+ opcache \
+ pcntl \
+ pdo_firebird \
+ pdo_mysql \
+ pdo_odbc \
+ pdo_pgsql \
+ redis \
+ soap \
+ sockets \
+ tidy \
+ uuid \
+ xdebug \
+ xsl \
+ yaml \
+ zip
 
 ADD rootfs /
 
 RUN rm /usr/local/etc/php/conf.d/xdebug2.ini
+RUN rm /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
 
 RUN bash /docker-build/00-user.sh
 RUN bash /docker-build/10-bash.sh
@@ -103,11 +60,6 @@ RUN bash /docker-build/20-apache.sh
 RUN bash /docker-build/50-composer.sh
 RUN bash /docker-build/60-symfony.sh
 RUN bash /docker-build/70-phpunit.sh 7 8 9
-
-RUN rm -r /var/lib/apt/lists/*
-
-RUN apt-get autoremove -y
-RUN apt-get autoclean -y
 
 USER dev
 
@@ -118,4 +70,3 @@ WORKDIR /www
 
 EXPOSE 80
 CMD ["sudo", "apache2-foreground"]
-
