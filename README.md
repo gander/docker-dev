@@ -14,9 +14,11 @@ PHP, Apache, dev user (1000)
 
 |             | 8.0   | 7.4   | 7.3   | 7.2   | 7.1   | 7.0   | 5.6   |
 |-------------|:-----:|:-----:|:-----:|:-----:|:-----:|:-----:|:-----:|
+|amqp         |&check;|&check;|&check;|&check;|&check;|&check;|&check;|
 |apcu         |&check;|&check;|&check;|&check;|&check;|&check;|&check;|
-|ast          |&check;|&check;|&check;|&check;|&check;|&check;|       |
+|ast          |&check;|&check;|&check;|&check;|&check;|&check;|&times;|
 |bcmath       |&check;|&check;|&check;|&check;|&check;|&check;|&check;|
+|bz2          |&check;|&check;|&check;|&check;|&check;|&check;|&check;|
 |exif         |&check;|&check;|&check;|&check;|&check;|&check;|&check;|
 |gd           |&check;|&check;|&check;|&check;|&check;|&check;|&check;|
 |intl         |&check;|&check;|&check;|&check;|&check;|&check;|&check;|
@@ -25,6 +27,7 @@ PHP, Apache, dev user (1000)
 |memcached    |&check;|&check;|&check;|&check;|&check;|&check;|&check;|
 |mongodb      |&check;|&check;|&check;|&check;|&check;|&check;|&check;|
 |mysqli       |&check;|&check;|&check;|&check;|&check;|&check;|&check;|
+|oauth        |&check;|&check;|&check;|&check;|&check;|&check;|&check;|
 |opcache      |&check;|&check;|&check;|&check;|&check;|&check;|&check;|
 |pcntl        |&check;|&check;|&check;|&check;|&check;|&check;|&check;|
 |pdo_firebird |&check;|&check;|&check;|&check;|&check;|&check;|&check;|
