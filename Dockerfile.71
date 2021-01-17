@@ -19,9 +19,7 @@ RUN apt-get install -y --no-install-recommends \
 RUN /usr/sbin/update-ca-certificates
 
 ADD https://github.com/mlocati/docker-php-extension-installer/releases/latest/download/install-php-extensions /usr/local/bin/
-RUN chmod +x /usr/local/bin/install-php-extensions
-
-RUN install-php-extensions \
+RUN chmod +x /usr/local/bin/install-php-extensions && sync && install-php-extensions \
  amqp \
  apcu \
  ast \
@@ -54,8 +52,7 @@ RUN install-php-extensions \
 
 ADD rootfs /
 
-RUN rm /usr/local/etc/php/conf.d/xdebug3.ini
-RUN rm /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
+ADD config/xdebug2.ini /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
 
 RUN bash /docker-build/00-user.sh
 RUN bash /docker-build/10-bash.sh

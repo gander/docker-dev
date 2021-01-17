@@ -11,8 +11,7 @@ PHP, Apache, dev user (1000)
 * `5.6`
 
 ## Usage
-+ Map volume `/code/app/public_html` to `/www/app.localhost/public`. Open [http://app.localhost/](http://app.localhost/).
-+ Map volume `/code/app` (with `public` dir) to `/www/app.localhost`. Open [http://app.localhost/](http://app.localhost/).
++ Map volume `/code` (with `public` dir) to `/www/foobar.localhost`. Open [http://foobar.localhost/](http://foobar.localhost/).
 + Map volume `/code/index.php` to `/www/localhost/public/index.php`. Open [http://localhost/](http://localhost/).
 + [Examples](./examples/README.md)
 
