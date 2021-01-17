@@ -1,0 +1,94 @@
+version: '3.7'
+
+services:
+  dev56:
+    hostname: 'dev-56'
+    container_name: 'dev_56'
+    image: 'gander/dev:5.6'
+    volumes:
+      - './app/xdebug2:/www/localhost'
+    working_dir: '/www/localhost/public'
+    ports:
+      - '8056:80'
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    environment:
+      PHP_IDE_CONFIG: "serverName=dev.56"
+  dev70:
+    hostname: 'dev-70'
+    container_name: 'dev_70'
+    image: 'gander/dev:7.0'
+    volumes:
+      - './app/xdebug2:/www/localhost'
+    working_dir: '/www/localhost/public'
+    ports:
+      - '8070:80'
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    environment:
+      PHP_IDE_CONFIG: "serverName=dev.70"
+  dev71:
+    hostname: 'dev-71'
+    container_name: 'dev_71'
+    image: 'gander/dev:7.1'
+    volumes:
+      - './app/xdebug2:/www/localhost'
+    working_dir: '/www/localhost/public'
+    ports:
+      - '8071:80'
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    environment:
+      PHP_IDE_CONFIG: "serverName=dev.71"
+  dev72:
+    hostname: 'dev-72'
+    container_name: 'dev_72'
+    image: 'gander/dev:7.2'
+    volumes:
+      - './app/xdebug3:/www/localhost'
+    working_dir: '/www/localhost/public'
+    ports:
+      - '8072:80'
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    environment:
+      PHP_IDE_CONFIG: "serverName=dev.72"
+  dev73:
+    hostname: 'dev-73'
+    container_name: 'dev_73'
+    image: 'gander/dev:7.3'
+    volumes:
+      - './app/xdebug3:/www/localhost'
+    working_dir: '/www/localhost/public'
+    ports:
+      - '8073:80'
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    environment:
+      PHP_IDE_CONFIG: "serverName=dev.73"
+  dev74:
+    hostname: 'dev-74'
+    container_name: 'dev_74'
+    image: 'gander/dev:7.4'
+    volumes:
+      - './app/xdebug3:/www/localhost'
+    working_dir: '/www/localhost/public'
+    ports:
+      - '8074:80'
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    environment:
+      PHP_IDE_CONFIG: "serverName=dev.74"
+  dev80:
+    hostname: 'dev-80'
+    container_name: 'dev_80'
+    image: 'gander/dev:8.0'
+    volumes:
+      - './app/xdebug3:/www/localhost'
+    working_dir: '/www/localhost/public'
+    ports:
+      - '8080:80'
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    environment:
+      PHP_IDE_CONFIG: "serverName=dev.80"

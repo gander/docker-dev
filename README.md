@@ -10,6 +10,20 @@ PHP, Apache, dev user (1000)
 * `7.0`
 * `5.6`
 
+## Usage
++ Map volume `/code/app/public_html` to `/www/app.localhost/public`. Open [http://app.localhost/](http://app.localhost/).
++ Map volume `/code/app` (with `public` dir) to `/www/app.localhost`. Open [http://app.localhost/](http://app.localhost/).
++ Map volume `/code/index.php` to `/www/localhost/public/index.php`. Open [http://localhost/](http://localhost/).
++ [Examples](./examples/README.md)
+
+## Xdebug
+1. Add mapping in: _[File | Settings | Languages & Frameworks | PHP | Servers](jetbrains://PhpStorm/settings?name=Languages+%26+Frameworks--PHP--Servers)_
+2. Install: [Browser debugging extensions](https://www.jetbrains.com/help/phpstorm/browser-debugging-extensions.html)
+3. Run: [Debug a PHP HTTP request](https://www.jetbrains.com/help/phpstorm/debugging-a-php-http-request.html)
+4. Run: [Debug a PHP CLI script](https://www.jetbrains.com/help/phpstorm/debugging-a-php-cli-script.html)
+
+[Debug with PhpStorm: Ultimate Guide](https://www.jetbrains.com/help/phpstorm/debugging-with-phpstorm-ultimate-guide.html)
+
 ## Base (&bull;) and installed (&check;) modules:
 
 |             | 8.0   | 7.4   | 7.3   | 7.2   | 7.1   | 7.0   | 5.6   |
@@ -77,40 +91,3 @@ PHP, Apache, dev user (1000)
 |yaml         |&check;|&check;|&check;|&check;|&check;|&check;|&check;|
 |zip          |&check;|&check;|&check;|&check;|&check;|&check;|&check;|
 |zlib         |&bull; |&bull; |&bull; |&bull; |&bull; |&bull; |&bull; |
-
-
-### Run:
-`docker run -d -p 80:80 -v "${HOME}/projects:/www" gander/dev`
-
-#### Required directory structure:
-+ `~/projects/example1.localhost/public/`
-+ `~/projects/example2.localhost/public/`
-+ `~/projects/example3.localhost/public/`
-
-`docker-compose.yml`:
-```yaml
-version: '3'
-
-services:
-    dev56:
-        container_name: 'dev56'
-        image: 'gander/dev:5.6'
-        volumes:
-            - '.:/www'
-        ports:
-            - '8056:80'
-    dev74:
-        container_name: 'dev74'
-        image: 'gander/dev:7.4'
-        volumes:
-            - '.:/www'
-        ports:
-            - '8074:80'
-    dev80:
-        container_name: 'dev80'
-        image: 'gander/dev:8.0'
-        volumes:
-            - '.:/www'
-        ports:
-            - '8080:80'
-```
