@@ -5,13 +5,14 @@ ENV TERM=xterm-256color
 
 RUN apt-get update
 RUN apt-get upgrade -y
-RUN apt-get install -y --no-install-recommends \
+RUN DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
     curl \
     git \
     htop \
     nano \
     openssh-client \
     screen \
+    ssl-cert \
     sudo \
     unzip \
     wget
@@ -67,4 +68,6 @@ VOLUME /www
 WORKDIR /www
 
 EXPOSE 80
+EXPOSE 443
+
 CMD ["sudo", "apache2-foreground"]

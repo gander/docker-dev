@@ -5,7 +5,8 @@
 ```shell
 docker run \
     --rm \
-    --publish "8080:80" \
+    --publish "80:80" \
+    --publish "443:443" \
     --volume "${PWD}/app/xdebug3:/www/localhost" \
     --workdir "/www/localhost/public" \
     --name "dev_80" \
@@ -17,13 +18,34 @@ docker run \
 ```shell
 docker run \
     --rm \
-    --publish "8056:80" \
+    --publish "80:80" \
+    --publish "443:443" \
     --volume "${PWD}/app/xdebug2:/www/localhost" \
     --workdir "/www/localhost/public" \
     --name "dev_56" \
     --hostname "dev-56" \
     --add-host="host.docker.internal:host-gateway" \
     "gander/dev:5.6"
+```
+
+## SSL with [mkcert](https://mkcert.dev/)
+```shell
+mkcert -install
+mkcert localhost
+```
+```shell
+docker run \
+    --rm \
+    --publish "80:80" \
+    --publish "443:443" \
+    --volume "${PWD}/app/xdebug3:/www/localhost" \
+    --volume "${PWD}/localhost.pem:/etc/ssl/certs/ssl-cert-snakeoil.pem:ro" \
+    --volume "${PWD}/localhost-key.pem:/etc/ssl/private/ssl-cert-snakeoil.key:ro" \
+    --workdir "/www/localhost/public" \
+    --name "dev_80" \
+    --hostname "dev-80" \
+    --add-host="host.docker.internal:host-gateway" \
+    "gander/dev:8.0"
 ```
 
 ## Example [docker-compose.yml](docker-compose.yml) configuration

@@ -8,5 +8,9 @@ test -x ~/.composer/vendor/bin/laravel && ~/.composer/vendor/bin/laravel --versi
 test -x /usr/local/bin/phpunit && /usr/local/bin/phpunit --version"
 
 for ver in 5.6 7.0 7.1 7.2 7.3 7.4 8.0; do
-  docker run --rm --name "dev-check-${ver}" "gander/dev:${ver}" bash -c "${CMD}"
+  docker run \
+    --rm \
+    --name "dev-check-${ver}-cli" \
+    "gander/dev:${ver}" \
+    bash -c "${CMD}"
 done
