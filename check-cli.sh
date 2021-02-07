@@ -1,4 +1,6 @@
-#!/usr/bin/env bash
+#!/bin/bash
+set -euo pipefail
+IFS=$'\n\t'
 
 CMD="php -r 'echo phpversion().PHP_EOL;';\
 test -x /usr/local/bin/composer1 && composer1 --version --ansi;\

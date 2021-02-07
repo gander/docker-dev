@@ -1,4 +1,6 @@
-#!/usr/bin/env bash
+#!/bin/bash
+set -euo pipefail
+IFS=$'\n\t'
 
 if [ ${#} -gt 0 ]; then
 
