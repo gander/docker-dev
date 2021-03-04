@@ -84,3 +84,17 @@ HOST_DOCKER_INTERNAL=$(hostname -I | awk '{print $1}') docker-compose up
 ```shell
 docker run --add-host="host.docker.internal:$(hostname -I | awk '{print $1}')"
 ```
+
+## Xdebug CLI 
+
+```shell
+export XDEBUG_SESSION=1
+php script1.php
+php script2.php
+php script3.php
+unset XDEBUG_SESSION
+```
+or:
+```shell
+XDEBUG_SESSION=1 php script.php
+```
