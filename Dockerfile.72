@@ -55,12 +55,12 @@ ADD rootfs /
 
 ADD config/xdebug3.ini /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
 
-RUN bash /docker-build/00-user.sh
-RUN bash /docker-build/10-bash.sh
-RUN bash /docker-build/20-apache.sh
-RUN bash /docker-build/50-composer.sh
-RUN bash /docker-build/60-symfony.sh
-RUN bash /docker-build/70-phpunit.sh 6 7 8
+RUN (bash /docker-build/00-user.sh) && \
+    (bash /docker-build/10-bash.sh) && \
+    (bash /docker-build/20-apache.sh) && \
+    (bash /docker-build/50-composer.sh) && \
+    (bash /docker-build/60-symfony.sh) && \
+    (bash /docker-build/70-phpunit.sh 6 7 8)
 
 USER dev
 
