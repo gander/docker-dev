@@ -71,3 +71,6 @@ EXPOSE 80
 EXPOSE 443
 
 CMD ["sudo", "apache2-foreground"]
+
+RUN bash /docker-build/99-summary.sh
+
