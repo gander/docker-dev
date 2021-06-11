@@ -6,7 +6,7 @@ cd /tmp || exit
 
 mkcert localhost || exit
 
-for ver in 5.6 7.0 7.1 7.2 7.3 7.4 8.0; do
+for ver in 5.6 7.0 7.1 7.2 7.3 7.4 8.0 8.1-rc; do
   docker rm \
     --force \
     "dev-check-${ver}-ssl" \
