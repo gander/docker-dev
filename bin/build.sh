@@ -5,14 +5,15 @@ IFS=$'\n\t'
 VERSIONS=("8.1-rc" "8.0" "7.4" "7.3" "7.2" "7.1" "7.0" "5.6")
 
 NAME="gander/dev"
+BUILD="$(dirname "${BASH_SOURCE[0]}")/../context"
 
 image_create() {
   if [ ! ${#} -eq 1 ]; then
     exit 1
   fi
 
-  TAG="${NAME}:${1}"
-  SRC="Dockerfile.${1/./}"
+  local TAG="${NAME}:${1}"
+  local SRC="${BUILD}/Dockerfile.${1/./}"
 
   if [ ! -e "${SRC}" ]; then
     exit 2
@@ -34,7 +35,7 @@ image_build() {
   echo "################################   BUILD   ${1}   ################################"
   echo
 
-  docker build -t "${1}" -f "${2}" .
+  docker build -t "${1}" -f "${2}" "${BUILD}"
 }
 
 image_push() {

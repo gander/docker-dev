@@ -2,6 +2,10 @@
 set -euo pipefail
 IFS=$'\n\t'
 
+if [ ${#} -lt 2 ]; then
+  exit 1
+fi
+
 VER=${1}
 
 cat <<EOF | docker build --pull --rm --tag "gander/dev:${VER}-test" -
@@ -34,4 +38,3 @@ echo
 echo PASS: "${PASS[@]}"
 echo FAIL: "${FAIL[@]}"
 echo
-
