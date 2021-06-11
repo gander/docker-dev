@@ -7,3 +7,4 @@
 /build-parallel.sh  export-ignore
 /check-cli.sh       export-ignore
 /check-ssl.sh       export-ignore
+/.*                 export-ignore
