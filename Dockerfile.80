@@ -32,7 +32,7 @@ RUN chmod +x /usr/local/bin/install-php-extensions && sync && install-php-extens
  mbstring \
  mcrypt \
  memcached \
- mongodb \
+ mongodb-^1.9 \
  mysqli \
  oauth \
  opcache \
