@@ -30,7 +30,7 @@ for EXT in "${@}"; do
     PASS+=("${EXT}") || FAIL+=("${EXT}")
 done
 
-docker image rm --force gander/dev:test
+docker image rm --force "gander/dev:${VER}-test"
 
 echo
 echo "===   ${VER}   ==="
