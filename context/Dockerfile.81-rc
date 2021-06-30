@@ -19,9 +19,6 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
 
 RUN /usr/sbin/update-ca-certificates
 
-ADD rootfs/docker-build /docker-build
-RUN bash /docker-build/50-composer.sh
-
 ADD https://github.com/mlocati/docker-php-extension-installer/releases/latest/download/install-php-extensions /usr/local/bin/
 RUN chmod +x /usr/local/bin/install-php-extensions && sync && install-php-extensions \
  amqp \
@@ -35,7 +32,7 @@ RUN chmod +x /usr/local/bin/install-php-extensions && sync && install-php-extens
  mbstring \
  mcrypt \
  memcached \
- mongodb-^1.9 \
+# mongodb-^1.9 \
  mysqli \
  oauth \
  opcache \
@@ -61,7 +58,7 @@ ADD config/xdebug3.ini /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
 RUN (bash /docker-build/00-user.sh) && \
     (bash /docker-build/10-bash.sh) && \
     (bash /docker-build/20-apache.sh) && \
-#    (bash /docker-build/50-composer.sh) && \
+    (bash /docker-build/50-composer.sh) && \
     (bash /docker-build/60-symfony.sh) && \
     (bash /docker-build/70-phpunit.sh 8 9)
 
