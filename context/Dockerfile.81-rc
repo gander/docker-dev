@@ -22,7 +22,7 @@ RUN /usr/sbin/update-ca-certificates
 ADD https://github.com/mlocati/docker-php-extension-installer/releases/latest/download/install-php-extensions /usr/local/bin/
 RUN chmod +x /usr/local/bin/install-php-extensions && sync && install-php-extensions \
  amqp \
- apcu \
+# apcu \
  ast \
  bcmath \
  bz2 \
@@ -48,7 +48,7 @@ RUN chmod +x /usr/local/bin/install-php-extensions && sync && install-php-extens
  uuid \
  xdebug \
  xsl \
- yaml \
+# yaml \
  zip
 
 ADD rootfs /
