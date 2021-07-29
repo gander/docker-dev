@@ -35,7 +35,7 @@ image_build() {
   echo "################################   BUILD   ${1}   ################################"
   echo
 
-  docker build --pull -t "${1}" -f "${2}" "${BUILD}"
+  docker build --no-cache --pull -t "${1}" -f "${2}" "${BUILD}"
 }
 
 image_push() {
