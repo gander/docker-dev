@@ -58,6 +58,10 @@ extra_hosts:
 docker-compose up
 ```
 
+## Xdebug port: _9003_ (v2 & v3)
+
+_[File | Settings | PHP | Debug](jetbrains://PhpStorm/settings?name=PHP--Debug)_
+
 ## PhpStorm "Servers" Configuration
 
 _[File | Settings | Languages & Frameworks | PHP | Servers](jetbrains://PhpStorm/settings?name=Languages+%26+Frameworks--PHP--Servers)_
@@ -71,6 +75,7 @@ _[File | Settings | Languages & Frameworks | PHP | Servers](jetbrains://PhpStorm
 |`dev.73`|`localhost`|`8073`|_Xdebug_|`app/xdebug3`|`/www/localhost`|
 |`dev.74`|`localhost`|`8074`|_Xdebug_|`app/xdebug3`|`/www/localhost`|
 |`dev.80`|`localhost`|`8080`|_Xdebug_|`app/xdebug3`|`/www/localhost`|
+|`dev.81`|`localhost`|`8081`|_Xdebug_|`app/xdebug3`|`/www/localhost`|
 
 ## Docker < 20.10
 
@@ -89,12 +94,25 @@ docker run --add-host="host.docker.internal:$(hostname -I | awk '{print $1}')"
 
 ```shell
 export XDEBUG_SESSION=1
+export XDEBUG_CONFIG=1
 php script1.php
 php script2.php
 php script3.php
 unset XDEBUG_SESSION
+unset XDEBUG_CONFIG
 ```
 or:
 ```shell
-XDEBUG_SESSION=1 php script.php
+XDEBUG_SESSION=1 XDEBUG_CONFIG=1 php script.php
+```
+or:
+```shell
+docker-compose exec dev56 bash -c 'XDEBUG_SESSION=1 XDEBUG_CONFIG=1 php index.php'
+docker-compose exec dev70 bash -c 'XDEBUG_SESSION=1 XDEBUG_CONFIG=1 php index.php'
+docker-compose exec dev71 bash -c 'XDEBUG_SESSION=1 XDEBUG_CONFIG=1 php index.php'
+docker-compose exec dev72 bash -c 'XDEBUG_SESSION=1 XDEBUG_CONFIG=1 php index.php'
+docker-compose exec dev73 bash -c 'XDEBUG_SESSION=1 XDEBUG_CONFIG=1 php index.php'
+docker-compose exec dev74 bash -c 'XDEBUG_SESSION=1 XDEBUG_CONFIG=1 php index.php'
+docker-compose exec dev80 bash -c 'XDEBUG_SESSION=1 XDEBUG_CONFIG=1 php index.php'
+docker-compose exec dev81 bash -c 'XDEBUG_SESSION=1 XDEBUG_CONFIG=1 php index.php'
 ```
