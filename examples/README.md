@@ -116,3 +116,8 @@ docker-compose exec dev74 bash -c 'XDEBUG_SESSION=1 XDEBUG_CONFIG=1 php index.ph
 docker-compose exec dev80 bash -c 'XDEBUG_SESSION=1 XDEBUG_CONFIG=1 php index.php'
 docker-compose exec dev81 bash -c 'XDEBUG_SESSION=1 XDEBUG_CONFIG=1 php index.php'
 ```
+
+## Articles
+
++ [PhpStorm: Configure Xdebug](https://www.jetbrains.com/help/phpstorm/configuring-xdebug.html)
++ [Browser debugging extensions](https://www.jetbrains.com/help/phpstorm/browser-debugging-extensions.html)
