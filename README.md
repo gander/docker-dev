@@ -10,12 +10,12 @@ PHP, Apache, dev user (1000)
 
 ## Usage
 
-| Container directory structure                  | Web path structure                        | Web path structure                        |
-|------------------------------------------------|-------------------------------------------|-------------------------------------------|
-| `/www/{{domain}}/public/{{file}}`              | `http://{{domain}}/{{file}}`              | `http://{{domain}}/{{file}}`              |
-| `/www/localhost/public/test.php`               | `http://localhost/test.php`               | `http://localhost/test.php`               |
-| `/www/example.localhost/public/index.php`      | `http://example.localhost/index.php`      | `http://example.localhost/index.php`      |
-| `/www/example.localhost/public/test/index.php` | `http://example.localhost/test/index.php` | `http://example.localhost/test/index.php` |
+| Container directory structure                  | Web path structure                        |
+|------------------------------------------------|-------------------------------------------|
+| `/www/{{domain}}/public/{{file}}`              | `http://{{domain}}/{{file}}`              |
+| `/www/localhost/public/test.php`               | `http://localhost/test.php`               |
+| `/www/example.localhost/public/index.php`      | `http://example.localhost/index.php`      |
+| `/www/example.localhost/public/test/index.php` | `http://example.localhost/test/index.php` |
 
 
 + [Examples](./examples/README.md)
