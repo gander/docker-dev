@@ -1,0 +1,25 @@
+version: '3.8'
+
+services:
+    php_dev:
+        build:
+            context: ./build
+            target: php_base
+        volumes:
+            - './www:/www'
+        working_dir: '/www'
+        ports:
+            - '80:80'
+        extra_hosts:
+            - "host.docker.internal:host-gateway"
+        environment:
+            PHP_IDE_CONFIG: "serverName=dev"
+    php_ssh:
+        build:
+            context: ./build
+            target: php_ssh
+        volumes:
+            - './www:/www'
+        working_dir: '/www'
+        ports:
+            - '2222:22'
