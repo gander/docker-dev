@@ -1,5 +1,7 @@
 # Invoker
 
+[If you run SSHD in your Docker containers, you're doing it wrong!](https://jpetazzo.github.io/2014/06/23/docker-ssh-considered-evil/)
+
 ## Run containers:
 ```shell
 cd examples/invoker
