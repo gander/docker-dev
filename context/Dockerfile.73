@@ -60,7 +60,8 @@ RUN (bash /docker-build/00-user.sh) && \
     (bash /docker-build/20-apache.sh) && \
     (bash /docker-build/50-composer.sh) && \
     (bash /docker-build/60-symfony.sh) && \
-    (bash /docker-build/70-phpunit.sh 7 8 9)
+    (bash /docker-build/70-phpunit.sh 7 8 9) && \
+    (bash /docker-build/90-utils.sh)
 
 USER dev
 
