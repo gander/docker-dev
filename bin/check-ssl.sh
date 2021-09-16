@@ -32,7 +32,7 @@ for ver in 5.6 7.0 7.1 7.2 7.3 7.4 8.0 8.1-rc; do
   echo
 
   echo quit | openssl s_client -verify_quiet -showcerts -servername localhost -connect localhost:443 >./localhost-cacert.pem
-  curl -sf --cacert cacert.pem https://localhost >/dev/null && echo "=> SSL TEST PASS" || echo "=> SSL TEST FAIL"
+  curl -sf --cacert ./localhost-cacert.pem https://localhost >/dev/null && echo "=> SSL TEST PASS" || echo "=> SSL TEST FAIL"
 
   echo "Removing dev-check-${ver}-ssl"
 
