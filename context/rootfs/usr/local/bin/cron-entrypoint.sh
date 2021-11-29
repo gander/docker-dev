@@ -10,7 +10,7 @@ crontab /tmp/crontab
 
 # cron service with SIGTERM support
 sudo service cron start
-sudo trap "service cron stop; exit" SIGINT SIGTERM
+trap "sudo service cron stop; exit" SIGINT SIGTERM
 
 # just dump your logs to std output
 tail -f /dev/null &
