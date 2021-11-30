@@ -95,7 +95,7 @@ services:
   dev81:
     hostname: 'dev-81'
     container_name: 'dev_81'
-    image: 'gander/dev:8.1-rc'
+    image: 'gander/dev:8.1'
     volumes:
       - './app/xdebug3:/www/localhost'
     working_dir: '/www/localhost/public'
