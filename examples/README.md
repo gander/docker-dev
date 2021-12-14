@@ -1,6 +1,10 @@
 # Examples
 
 ## Example "docker run" configuration
+```shell
+docker run --interactive --tty --rm --volume "$PWD:/www" gander/dev:7.3 <command>
+```
+
 
 ```shell
 docker run \
