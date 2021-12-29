@@ -5,8 +5,9 @@ ENV TERM=xterm-256color
 
 ADD /rootfs/docker-build/ /docker-build/
 
-RUN bash /docker-build/99-summary.sh | tee '/tmp/pre-installed-summary.log'
-RUN /docker-build/installed-extensions.sh | tee '/tmp/pre-installed-extensions.log'
+RUN mkdir -p /tmp/summary
+RUN bash /docker-build/99-summary.sh | tee '/tmp/summary/pre-summary.log'
+RUN /docker-build/installed-extensions.sh > '/tmp/summary/pre-extensions.json'
 
 RUN apt-get update
 RUN apt-get upgrade -y
@@ -58,7 +59,7 @@ RUN chmod +x /usr/local/bin/install-php-extensions && sync && install-php-extens
 # yaml \
  zip
 
-RUN /docker-build/installed-extensions.sh | tee '/tmp/post-installed-extensions.log'
+RUN /docker-build/installed-extensions.sh > '/tmp/summary/post-extensions.json'
 
 ADD rootfs /
 
@@ -88,5 +89,6 @@ EXPOSE 443
 
 CMD ["sudo", "apache2-foreground"]
 
-RUN bash /docker-build/99-summary.sh | tee '/tmp/post-installed-summary.log'
+RUN bash /docker-build/99-summary.sh | sudo tee '/tmp/summary/post-summary.log'
+RUN sudo chown -R dev:dev /tmp/summary/
 
