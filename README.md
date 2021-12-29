@@ -21,69 +21,52 @@ PHP, Apache, dev user (1000)
 + [Examples](./examples/README.md)
 
 
-## Base (&bull;) and installed (&check;) modules
+## Modules installed by default:
 
-|             | 8.1   | 8.0   | 7.4   | 7.3   | 7.2   | 7.1   | 7.0   | 5.6   |
-|-------------|:-----:|:-----:|:-----:|:-----:|:-----:|:-----:|:-----:|:-----:|
-|amqp         |&check;|&check;|&check;|&check;|&check;|&check;|&check;|&check;|
-|apcu         |&check;|&check;|&check;|&check;|&check;|&check;|&check;|&check;|
-|ast          |&check;|&check;|&check;|&check;|&check;|&check;|&check;|&times;|
-|bcmath       |&check;|&check;|&check;|&check;|&check;|&check;|&check;|&check;|
-|bz2          |&check;|&check;|&check;|&check;|&check;|&check;|&check;|&check;|
-|ctype        |&bull; |&bull; |&bull; |&bull; |&bull; |&bull; |&bull; |&bull; |
-|curl         |&bull; |&bull; |&bull; |&bull; |&bull; |&bull; |&bull; |&bull; |
-|date         |&bull; |&bull; |&bull; |&bull; |&bull; |&bull; |&bull; |&bull; |
-|dom          |&bull; |&bull; |&bull; |&bull; |&bull; |&bull; |&bull; |&bull; |
-|ereg         |       |       |       |       |       |       |       |&bull; |
-|exif         |&check;|&check;|&check;|&check;|&check;|&check;|&check;|&check;|
-|fileinfo     |&bull; |&bull; |&bull; |&bull; |&bull; |&bull; |&bull; |&bull; |
-|filter       |&bull; |&bull; |&bull; |&bull; |&bull; |&bull; |&bull; |&bull; |
-|ftp          |&bull; |&bull; |&bull; |&bull; |&bull; |&bull; |&bull; |&bull; |
-|gd           |&check;|&check;|&check;|&check;|&check;|&check;|&check;|&check;|
-|hash         |       |       |       |       |       |       |       |&bull; |
-|iconv        |&bull; |&bull; |&bull; |&bull; |&bull; |&bull; |&bull; |&bull; |
-|intl         |&check;|&check;|&check;|&check;|&check;|&check;|&check;|&check;|
-|json         |&bull; |&bull; |&bull; |&bull; |&bull; |&bull; |&bull; |&bull; |
-|libxml       |&bull; |&bull; |&bull; |&bull; |&bull; |&bull; |&bull; |&bull; |
-|mbstring     |&bull; |&bull; |&bull; |&bull; |&bull; |&bull; |&bull; |&bull; |
-|mcrypt       |&check;|&check;|&check;|&check;|&check;|&check;|&check;|&check;|
-|memcached    |&check;|&check;|&check;|&check;|&check;|&check;|&check;|&check;|
-|mhash        |&bull; |&bull; |&bull; |&bull; |&bull; |&bull; |&bull; |&bull; |
-|mongodb      |       |&check;|&check;|&check;|&check;|&check;|&check;|&check;|
-|mysqli       |&check;|&check;|&check;|&check;|&check;|&check;|&check;|&check;|
-|mysqlnd      |&bull; |&bull; |&bull; |&bull; |&bull; |&bull; |&bull; |&bull; |
-|oauth        |&check;|&check;|&check;|&check;|&check;|&check;|&check;|&check;|
-|opcache      |&check;|&check;|&check;|&check;|&check;|&check;|&check;|&check;|
-|openssl      |&bull; |&bull; |&bull; |&bull; |&bull; |&bull; |&bull; |&bull; |
-|pcntl        |&check;|&check;|&check;|&check;|&check;|&check;|&check;|&check;|
-|pcre         |&bull; |&bull; |&bull; |&bull; |&bull; |&bull; |&bull; |&bull; |
-|PDO          |&bull; |&bull; |&bull; |&bull; |&bull; |&bull; |&bull; |&bull; |
-|pdo_firebird |&check;|&check;|&check;|&check;|&check;|&check;|&check;|&check;|
-|pdo_mysql    |&check;|&check;|&check;|&check;|&check;|&check;|&check;|&check;|
-|pdo_odbc     |&check;|&check;|&check;|&check;|&check;|&check;|&check;|&check;|
-|pdo_pgsql    |&check;|&check;|&check;|&check;|&check;|&check;|&check;|&check;|
-|pdo_sqlite   |&bull; |&bull; |&bull; |&bull; |&bull; |&bull; |&bull; |&bull; |
-|Phar         |&bull; |&bull; |&bull; |&bull; |&bull; |&bull; |&bull; |&bull; |
-|posix        |&bull; |&bull; |&bull; |&bull; |&bull; |&bull; |&bull; |&bull; |
-|readline     |&bull; |&bull; |&bull; |&bull; |&bull; |&bull; |&bull; |&bull; |
-|redis        |&check;|&check;|&check;|&check;|&check;|&check;|&check;|&check;|
-|Reflection   |&bull; |&bull; |&bull; |&bull; |&bull; |&bull; |&bull; |&bull; |
-|session      |&bull; |&bull; |&bull; |&bull; |&bull; |&bull; |&bull; |&bull; |
-|SimpleXML    |&bull; |&bull; |&bull; |&bull; |&bull; |&bull; |&bull; |&bull; |
-|soap         |&check;|&check;|&check;|&check;|&check;|&check;|&check;|&check;|
-|sockets      |&check;|&check;|&check;|&check;|&check;|&check;|&check;|&check;|
-|sodium       |&bull; |&bull; |&bull; |&bull; |&bull; |&bull; |       |       |
-|SPL          |&bull; |&bull; |&bull; |&bull; |&bull; |&bull; |&bull; |&bull; |
-|sqlite3      |&bull; |&bull; |&bull; |&bull; |&bull; |&bull; |&bull; |&bull; |
-|standard     |&bull; |&bull; |&bull; |&bull; |&bull; |&bull; |&bull; |&bull; |
-|tidy         |&check;|&check;|&check;|&check;|&check;|&check;|&check;|&check;|
-|tokenizer    |&bull; |&bull; |&bull; |&bull; |&bull; |&bull; |&bull; |&bull; |
-|uuid         |&check;|&check;|&check;|&check;|&check;|&check;|&check;|&check;|
-|xdebug       |&check;|&check;|&check;|&check;|&check;|&check;|&check;|&check;|
-|xml          |&bull; |&bull; |&bull; |&bull; |&bull; |&bull; |&bull; |&bull; |
-|xmlreader    |&bull; |&bull; |&bull; |&bull; |&bull; |&bull; |&bull; |&bull; |
-|xmlwriter    |&bull; |&bull; |&bull; |&bull; |&bull; |&bull; |&bull; |&bull; |
-|xsl          |&check;|&check;|&check;|&check;|&check;|&check;|&check;|&check;|
-|yaml         |&check;|&check;|&check;|&check;|&check;|&check;|&check;|&check;|
-|zip          |&check;|&check;|&check;|&check;|&check;|&check;|&check;|&check;|
-|zlib         |&bull; |&bull; |&bull; |&bull; |&bull; |&bull; |&bull; |&bull; |
+|          | 5.6   | 7.0   | 7.1   | 7.2   | 7.3   | 7.4   | 8.0   | 8.1   |
+|----------|:-----:|:-----:|:-----:|:-----:|:-----:|:-----:|:-----:|:-----:|
+|ctype     |&bull; |&bull; |&bull; |&bull; |&bull; |&bull; |&bull; |&bull; |
+|curl      |&bull; |&bull; |&bull; |&bull; |&bull; |&bull; |&bull; |&bull; |
+|dom       |&bull; |&bull; |&bull; |&bull; |&bull; |&bull; |&bull; |&bull; |
+|fileinfo  |&bull; |&bull; |&bull; |&bull; |&bull; |&bull; |&bull; |&bull; |
+|filter    |&bull; |&bull; |&bull; |&bull; |&bull; |&bull; |&bull; |&bull; |
+|ftp       |&bull; |&bull; |&bull; |&bull; |&bull; |&bull; |&bull; |&bull; |
+|hash      |&bull; |&bull; |&bull; |&bull; |&bull; |&bull; |&bull; |&bull; |
+|iconv     |&bull; |&bull; |&bull; |&bull; |&bull; |&bull; |&bull; |&bull; |
+|json      |&bull; |&bull; |&bull; |&bull; |&bull; |&bull; |&bull; |&bull; |
+|mbstring  |&bull; |&bull; |&bull; |&bull; |&bull; |&bull; |&bull; |&bull; |
+|openssl   |&bull; |&bull; |&bull; |&bull; |&bull; |&bull; |&bull; |&bull; |
+|pcre      |&bull; |&bull; |&bull; |&bull; |&bull; |&bull; |&bull; |&bull; |
+|pdo       |&bull; |&bull; |&bull; |&bull; |&bull; |&bull; |&bull; |&bull; |
+|pdo_sqlite|&bull; |&bull; |&bull; |&bull; |&bull; |&bull; |&bull; |&bull; |
+|phar      |&bull; |&bull; |&bull; |&bull; |&bull; |&bull; |&bull; |&bull; |
+|posix     |&bull; |&bull; |&bull; |&bull; |&bull; |&bull; |&bull; |&bull; |
+|readline  |&bull; |&bull; |&bull; |&bull; |&bull; |&bull; |&bull; |&bull; |
+|session   |&bull; |&bull; |&bull; |&bull; |&bull; |&bull; |&bull; |&bull; |
+|simplexml |&bull; |&bull; |&bull; |&bull; |&bull; |&bull; |&bull; |&bull; |
+|sodium    |       |       |       |&bull; |&bull; |&bull; |&bull; |&bull; |
+|sqlite3   |&bull; |&bull; |&bull; |&bull; |&bull; |&bull; |&bull; |&bull; |
+|tokenizer |&bull; |&bull; |&bull; |&bull; |&bull; |&bull; |&bull; |&bull; |
+|xml       |&bull; |&bull; |&bull; |&bull; |&bull; |&bull; |&bull; |&bull; |
+|xmlreader |&bull; |&bull; |&bull; |&bull; |&bull; |&bull; |&bull; |&bull; |
+|xmlwriter |&bull; |&bull; |&bull; |&bull; |&bull; |&bull; |&bull; |&bull; |
+
+## Additionally installed modules:
+
+|          | 5.6   | 7.0   | 7.1   | 7.2   | 7.3   | 7.4   | 8.0   | 8.1   |
+|----------|:-----:|:-----:|:-----:|:-----:|:-----:|:-----:|:-----:|:-----:|
+|bcmath    |&check;|&check;|&check;|&check;|&check;|&check;|&check;|&check;|
+|ds        |       |&check;|&check;|&check;|&check;|&check;|&check;|&check;|
+|exif      |&check;|&check;|&check;|&check;|&check;|&check;|&check;|&check;|
+|gd        |&check;|&check;|&check;|&check;|&check;|&check;|&check;|&check;|
+|intl      |&check;|&check;|&check;|&check;|&check;|&check;|&check;|&check;|
+|mcrypt    |&check;|&check;|&check;|&check;|&check;|&check;|&check;|&check;|
+|pcntl     |&check;|&check;|&check;|&check;|&check;|&check;|&check;|&check;|
+|pdo_mysql |&check;|&check;|&check;|&check;|&check;|&check;|&check;|&check;|
+|pdo_pgsql |&check;|&check;|&check;|&check;|&check;|&check;|&check;|&check;|
+|redis     |&check;|&check;|&check;|&check;|&check;|&check;|&check;|&check;|
+|uuid      |&check;|&check;|&check;|&check;|&check;|&check;|&check;|&check;|
+|xdebug    |&check;|&check;|&check;|&check;|&check;|&check;|&check;|&check;|
+|xsl       |&check;|&check;|&check;|&check;|&check;|&check;|&check;|&check;|
+|zip       |&check;|&check;|&check;|&check;|&check;|&check;|&check;|&check;|
+
