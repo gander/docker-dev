@@ -66,7 +66,10 @@ RUN (bash /docker-build/00-user.sh) && \
 
 USER dev
 
-RUN bash /docker-build/composer-global.sh 'laravel/installer'
+RUN bash /docker-build/composer-global-plugin.sh 'icanhazstring/composer-unused' 'bamarni/composer-bin-plugin'
+RUN bash /docker-build/composer-global-bin.sh 'laravel' 'laravel/installer'
+RUN bash /docker-build/composer-global-bin.sh 'phpstan' 'phpstan/phpstan'
+RUN bash /docker-build/composer-global-bin.sh 'psalm' 'vimeo/psalm'
 
 VOLUME /www
 WORKDIR /www
