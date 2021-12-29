@@ -3,6 +3,11 @@ FROM php:7.2-apache
 ARG DEV_USER_UID=1000
 ENV TERM=xterm-256color
 
+ADD /rootfs/docker-build/ /docker-build/
+
+RUN bash /docker-build/99-summary.sh | tee '/tmp/pre-installed-summary.log'
+RUN /docker-build/installed-extensions.sh | tee '/tmp/pre-installed-extensions.log'
+
 RUN apt-get update
 RUN apt-get upgrade -y
 RUN DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
@@ -82,5 +87,5 @@ EXPOSE 443
 
 CMD ["sudo", "apache2-foreground"]
 
-RUN bash /docker-build/99-summary.sh
+RUN sudo bash /docker-build/99-summary.sh | tee '/tmp/post-installed-summary.log'
 
