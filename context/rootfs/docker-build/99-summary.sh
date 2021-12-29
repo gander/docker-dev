@@ -5,7 +5,7 @@ IFS=$'\n\t'
 commands=(
   "php -r \"echo 'PHP:      '.phpversion();\""
   "php -r \"echo 'Zend:     '.zend_version();\""
-  "php -r \"echo 'Xdebug:   '.phpversion('xdebug');\""
+  "php -r \"echo 'Xdebug:   '.(phpversion('xdebug') ?: '-');\""
   "(test -x /usr/local/bin/composer && composer --version --no-ansi || true)"
   "(test -x /usr/local/bin/symfony && /usr/local/bin/symfony version --no-ansi || true)"
   "(test -x ~/.composer/vendor/bin/laravel && ~/.composer/vendor/bin/laravel --version --no-ansi || true)"
@@ -30,6 +30,12 @@ for command in ${!commands[*]}; do
 
 done
 echo
+if [ -x /usr/local/bin/composer ]; then
+  echo "#######################   COMPOSER GLOBAL BIN   #######################"
+  echo
+  composer global bin all show -D
+  echo
+fi
 echo "#######################################################################"
 echo
 echo
