@@ -22,34 +22,36 @@ RUN /usr/sbin/update-ca-certificates
 
 ADD https://github.com/mlocati/docker-php-extension-installer/releases/latest/download/install-php-extensions /usr/local/bin/
 RUN chmod +x /usr/local/bin/install-php-extensions && sync && install-php-extensions \
- amqp \
- apcu \
+# amqp \
+# apcu \
  bcmath \
- bz2 \
+# bz2 \
  exif \
  gd \
  intl \
  mbstring \
  mcrypt \
- memcached \
- mongodb \
- mysqli \
- oauth \
- opcache \
+# memcached \
+# mongodb \
+# mysqli \
+# oauth \
+# opcache \
  pcntl \
- pdo_firebird \
+# pdo_firebird \
  pdo_mysql \
- pdo_odbc \
+# pdo_odbc \
  pdo_pgsql \
  redis \
- soap \
- sockets \
- tidy \
+# soap \
+# sockets \
+# tidy \
  uuid \
  xdebug \
  xsl \
- yaml \
+# yaml \
  zip
+
+RUN /docker-build/installed-extensions.sh | tee '/tmp/post-installed-extensions.log'
 
 ADD rootfs /
 
