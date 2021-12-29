@@ -32,6 +32,7 @@ RUN chmod +x /usr/local/bin/install-php-extensions && sync && install-php-extens
 # ast \
  bcmath \
 # bz2 \
+ ds \
  exif \
  gd \
  intl \
