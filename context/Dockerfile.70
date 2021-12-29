@@ -35,7 +35,7 @@ RUN chmod +x /usr/local/bin/install-php-extensions && sync && install-php-extens
  exif \
  gd \
  intl \
- mbstring \
+# mbstring \
  mcrypt \
 # memcached \
 # mongodb \
