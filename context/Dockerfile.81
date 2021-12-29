@@ -87,5 +87,5 @@ EXPOSE 443
 
 CMD ["sudo", "apache2-foreground"]
 
-RUN sudo bash /docker-build/99-summary.sh | tee '/tmp/post-installed-summary.log'
+RUN bash /docker-build/99-summary.sh | tee '/tmp/post-installed-summary.log'
 
