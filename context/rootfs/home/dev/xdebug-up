@@ -1,0 +1,2 @@
+export XDEBUG_SESSION=1
+export XDEBUG_CONFIG=1
