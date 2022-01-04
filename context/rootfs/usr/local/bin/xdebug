@@ -1,0 +1,4 @@
+#!/bin/bash
+
+XDEBUG_SESSION=1 XDEBUG_CONFIG=1 "$@"
+exit $?
