@@ -44,6 +44,6 @@ jobs:
         with:
           context: .
           file: ${{ steps.dockerfile.outputs.value }}
-          tags: gander/playground:test-${{ matrix.version }}
+          tags: gander/dev:${{ matrix.version }}
           push: true
 
