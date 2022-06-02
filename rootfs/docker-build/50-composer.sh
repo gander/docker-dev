@@ -10,8 +10,10 @@ if [ "$EXPECTED_CHECKSUM" != "$ACTUAL_CHECKSUM" ]; then
   exit 1
 fi
 
-php composer-setup.php --quiet --install-dir=/usr/local/bin --filename=composer --stable
-RESULT=$?
+RESULT=0
+php composer-setup.php --quiet --install-dir=/usr/local/bin --filename=composer --stable || RESULT=$?
+php composer-setup.php --quiet --install-dir=/usr/local/bin --filename=composer1 --1 || RESULT=$?
+php composer-setup.php --quiet --install-dir=/usr/local/bin --filename=composer2 --2 || RESULT=$?
 rm composer-setup.php
 
 if [ $RESULT -eq 0 ]; then
