@@ -12,7 +12,6 @@ fi
 
 RESULT=0
 php composer-setup.php --quiet --install-dir=/usr/local/bin --filename=composer1 --1 || RESULT=$?
-php composer-setup.php --quiet --install-dir=/usr/local/bin --filename=composer2 --2.2 || RESULT=$?
 php composer-setup.php --quiet --install-dir=/usr/local/bin --filename=composer --stable || RESULT=$?
 rm composer-setup.php
 
