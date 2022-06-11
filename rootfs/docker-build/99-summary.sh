@@ -30,12 +30,6 @@ for command in ${!commands[*]}; do
 
 done
 echo
-if [ -x /usr/local/bin/composer ]; then
-  echo "#######################   COMPOSER GLOBAL BIN   #######################"
-  echo
-  composer global bin all show -D
-  echo
-fi
 echo "#######################################################################"
 echo
 echo
