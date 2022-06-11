@@ -30,7 +30,6 @@ RUN chmod +x /usr/local/bin/install-php-extensions && sync && install-php-extens
  zip
 
 ADD rootfs /
-ADD setup /setup
 
 RUN (bash /setup/00-user.sh) && \
     (bash /setup/10-bash.sh) && \

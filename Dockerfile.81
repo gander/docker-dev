@@ -31,7 +31,7 @@ RUN chmod +x /usr/local/bin/install-php-extensions && sync && install-php-extens
  zip
 
 ADD rootfs /
-ADD setup /setup
+ADD rootfs/setup /setup
 
 ADD config/xdebug3.ini /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
 
