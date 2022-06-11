@@ -38,6 +38,7 @@ RUN (bash /setup/00-user.sh) && \
     (bash /setup/10-bash.sh) && \
     (bash /setup/20-apache.sh) && \
     (bash /setup/50-composer.sh) && \
+    (bash /setup/60-symfony.sh) && \
     (bash /setup/70-phpunit.sh 4 5) && \
     (bash /setup/90-utils.sh) && \
     (rm -fr /setup/)
