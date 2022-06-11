@@ -28,35 +28,12 @@ RUN /usr/sbin/update-ca-certificates
 
 ADD https://github.com/mlocati/docker-php-extension-installer/releases/latest/download/install-php-extensions /usr/local/bin/
 RUN chmod +x /usr/local/bin/install-php-extensions && sync && install-php-extensions \
-# amqp \
-# apcu \
-# ast \
  bcmath \
-# bz2 \
- ds \
- exif \
  gd \
  intl \
-# mbstring \
  mcrypt \
-# memcached \
-# mongodb \
-# mysqli \
-# oauth \
-# opcache \
  pcntl \
-# pdo_firebird \
- pdo_mysql \
-# pdo_odbc \
- pdo_pgsql \
- redis \
-# soap \
-# sockets \
-# tidy \
- uuid \
  xdebug \
- xsl \
-# yaml \
  zip
 
 RUN /docker-build/installed-extensions.sh > '/tmp/summary/post-extensions.json'
@@ -76,12 +53,6 @@ RUN (bash /docker-build/00-user.sh) && \
 USER dev
 
 ADD --chown=dev:dev home-dev /home/dev/
-
-RUN bash /docker-build/composer-global-plugin.sh 'icanhazstring/composer-unused' 'bamarni/composer-bin-plugin'
-RUN bash /docker-build/composer-global-bin.sh 'laravel' 'laravel/installer'
-RUN bash /docker-build/composer-global-bin.sh 'phpstan' 'phpstan/phpstan'
-RUN bash /docker-build/composer-global-bin-plugin.sh 'psalm' 'composer/package-versions-deprecated'
-RUN bash /docker-build/composer-global-bin.sh 'psalm' 'vimeo/psalm'
 
 VOLUME /www
 WORKDIR /www
