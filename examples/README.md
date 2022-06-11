@@ -1,10 +1,10 @@
 # Examples
 
 ## Example "docker run" configuration
+
 ```shell
 docker run --interactive --tty --rm --volume "$PWD:/www" gander/dev:7.3 <command>
 ```
-
 
 ```shell
 docker run \
@@ -33,10 +33,12 @@ docker run \
 ```
 
 ## SSL with [mkcert](https://mkcert.dev/)
+
 ```shell
 mkcert -install
 mkcert localhost
 ```
+
 ```shell
 docker run \
     --rm \
@@ -58,6 +60,7 @@ docker run \
 extra_hosts:
   - "host.docker.internal:host-gateway"
 ```
+
 ```shell
 docker-compose up
 ```
@@ -70,16 +73,16 @@ _[File | Settings | PHP | Debug](jetbrains://PhpStorm/settings?name=PHP--Debug)_
 
 _[File | Settings | Languages & Frameworks | PHP | Servers](jetbrains://PhpStorm/settings?name=Languages+%26+Frameworks--PHP--Servers)_
 
-|Name|Host|Port|Debugger|File/Directory|Absolute path on the server|
-|:---:|:---:|:---:|:---:|:---:|:---:|
-|`dev.56`|`localhost`|`8056`|_Xdebug_|`app/xdebug2`|`/www/localhost`|
-|`dev.70`|`localhost`|`8070`|_Xdebug_|`app/xdebug2`|`/www/localhost`|
-|`dev.71`|`localhost`|`8071`|_Xdebug_|`app/xdebug2`|`/www/localhost`|
-|`dev.72`|`localhost`|`8072`|_Xdebug_|`app/xdebug3`|`/www/localhost`|
-|`dev.73`|`localhost`|`8073`|_Xdebug_|`app/xdebug3`|`/www/localhost`|
-|`dev.74`|`localhost`|`8074`|_Xdebug_|`app/xdebug3`|`/www/localhost`|
-|`dev.80`|`localhost`|`8080`|_Xdebug_|`app/xdebug3`|`/www/localhost`|
-|`dev.81`|`localhost`|`8081`|_Xdebug_|`app/xdebug3`|`/www/localhost`|
+|   Name   |    Host     |  Port  | Debugger | File/Directory | Absolute path on the server |
+|:--------:|:-----------:|:------:|:--------:|:--------------:|:---------------------------:|
+| `dev.56` | `localhost` | `8056` | _Xdebug_ | `app/xdebug2`  |      `/www/localhost`       |
+| `dev.70` | `localhost` | `8070` | _Xdebug_ | `app/xdebug2`  |      `/www/localhost`       |
+| `dev.71` | `localhost` | `8071` | _Xdebug_ | `app/xdebug2`  |      `/www/localhost`       |
+| `dev.72` | `localhost` | `8072` | _Xdebug_ | `app/xdebug3`  |      `/www/localhost`       |
+| `dev.73` | `localhost` | `8073` | _Xdebug_ | `app/xdebug3`  |      `/www/localhost`       |
+| `dev.74` | `localhost` | `8074` | _Xdebug_ | `app/xdebug3`  |      `/www/localhost`       |
+| `dev.80` | `localhost` | `8080` | _Xdebug_ | `app/xdebug3`  |      `/www/localhost`       |
+| `dev.81` | `localhost` | `8081` | _Xdebug_ | `app/xdebug3`  |      `/www/localhost`       |
 
 ## Docker < 20.10
 
@@ -87,14 +90,16 @@ _[File | Settings | Languages & Frameworks | PHP | Servers](jetbrains://PhpStorm
 extra_hosts:
   - "host.docker.internal:${HOST_DOCKER_INTERNAL}"
 ```
+
 ```shell
 HOST_DOCKER_INTERNAL=$(hostname -I | awk '{print $1}') docker-compose up
 ```
+
 ```shell
 docker run --add-host="host.docker.internal:$(hostname -I | awk '{print $1}')"
 ```
 
-## Xdebug CLI 
+## Xdebug CLI
 
 ```shell
 export XDEBUG_SESSION=1
@@ -105,11 +110,15 @@ php script3.php
 unset XDEBUG_SESSION
 unset XDEBUG_CONFIG
 ```
+
 or:
+
 ```shell
 XDEBUG_SESSION=1 XDEBUG_CONFIG=1 php script.php
 ```
+
 or:
+
 ```shell
 docker-compose exec dev56 bash -c 'XDEBUG_SESSION=1 XDEBUG_CONFIG=1 php index.php'
 docker-compose exec dev70 bash -c 'XDEBUG_SESSION=1 XDEBUG_CONFIG=1 php index.php'
