@@ -12,7 +12,7 @@ jobs:
     runs-on: ubuntu-latest
     continue-on-error: false
     strategy:
-      max-parallel: 8
+      max-parallel: 3
       matrix:
         version:
           - '5.6'
