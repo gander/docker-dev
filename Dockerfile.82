@@ -54,7 +54,7 @@ RUN chmod +x /usr/local/bin/install-php-extensions && sync && install-php-extens
 # sockets \
 # tidy \
  uuid \
- xdebug \
+# xdebug \
  xsl \
 # yaml \
  zip
@@ -63,7 +63,7 @@ RUN /docker-build/installed-extensions.sh > '/tmp/summary/post-extensions.json'
 
 ADD rootfs /
 
-ADD config/xdebug3.ini /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
+#ADD config/xdebug3.ini /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
 
 RUN (bash /docker-build/00-user.sh) && \
     (bash /docker-build/10-bash.sh) && \
