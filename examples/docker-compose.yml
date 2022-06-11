@@ -5,8 +5,6 @@ services:
     hostname: 'dev-56'
     container_name: 'dev_56'
     image: 'gander/dev:5.6'
-    volumes:
-      - './app/xdebug2:/www/localhost'
     working_dir: '/www/localhost/public'
     ports:
       - '8056:80'
@@ -18,8 +16,6 @@ services:
     hostname: 'dev-70'
     container_name: 'dev_70'
     image: 'gander/dev:7.0'
-    volumes:
-      - './app/xdebug2:/www/localhost'
     working_dir: '/www/localhost/public'
     ports:
       - '8070:80'
@@ -31,8 +27,6 @@ services:
     hostname: 'dev-71'
     container_name: 'dev_71'
     image: 'gander/dev:7.1'
-    volumes:
-      - './app/xdebug2:/www/localhost'
     working_dir: '/www/localhost/public'
     ports:
       - '8071:80'
@@ -44,8 +38,6 @@ services:
     hostname: 'dev-72'
     container_name: 'dev_72'
     image: 'gander/dev:7.2'
-    volumes:
-      - './app/xdebug3:/www/localhost'
     working_dir: '/www/localhost/public'
     ports:
       - '8072:80'
@@ -57,8 +49,6 @@ services:
     hostname: 'dev-73'
     container_name: 'dev_73'
     image: 'gander/dev:7.3'
-    volumes:
-      - './app/xdebug3:/www/localhost'
     working_dir: '/www/localhost/public'
     ports:
       - '8073:80'
@@ -70,8 +60,6 @@ services:
     hostname: 'dev-74'
     container_name: 'dev_74'
     image: 'gander/dev:7.4'
-    volumes:
-      - './app/xdebug3:/www/localhost'
     working_dir: '/www/localhost/public'
     ports:
       - '8074:80'
@@ -83,8 +71,6 @@ services:
     hostname: 'dev-80'
     container_name: 'dev_80'
     image: 'gander/dev:8.0'
-    volumes:
-      - './app/xdebug3:/www/localhost'
     working_dir: '/www/localhost/public'
     ports:
       - '8080:80'
@@ -96,8 +82,6 @@ services:
     hostname: 'dev-81'
     container_name: 'dev_81'
     image: 'gander/dev:8.1'
-    volumes:
-      - './app/xdebug3:/www/localhost'
     working_dir: '/www/localhost/public'
     ports:
       - '8081:80'
@@ -105,3 +89,14 @@ services:
       - "host.docker.internal:host-gateway"
     environment:
       PHP_IDE_CONFIG: "serverName=dev.81"
+  dev82:
+    hostname: 'dev-82'
+    container_name: 'dev_82'
+    image: 'gander/dev:8.2'
+    working_dir: '/www/localhost/public'
+    ports:
+      - '8082:80'
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    environment:
+      PHP_IDE_CONFIG: "serverName=dev.82"

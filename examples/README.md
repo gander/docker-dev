@@ -11,7 +11,6 @@ docker run \
     --rm \
     --publish "80:80" \
     --publish "443:443" \
-    --volume "${PWD}/app/xdebug3:/www/localhost" \
     --workdir "/www/localhost/public" \
     --name "dev_80" \
     --hostname "dev-80" \
@@ -24,7 +23,6 @@ docker run \
     --rm \
     --publish "80:80" \
     --publish "443:443" \
-    --volume "${PWD}/app/xdebug2:/www/localhost" \
     --workdir "/www/localhost/public" \
     --name "dev_56" \
     --hostname "dev-56" \
@@ -44,7 +42,6 @@ docker run \
     --rm \
     --publish "80:80" \
     --publish "443:443" \
-    --volume "${PWD}/app/xdebug3:/www/localhost" \
     --volume "${PWD}/localhost.pem:/etc/ssl/certs/ssl-cert-snakeoil.pem:ro" \
     --volume "${PWD}/localhost-key.pem:/etc/ssl/private/ssl-cert-snakeoil.key:ro" \
     --workdir "/www/localhost/public" \
@@ -83,6 +80,7 @@ _[File | Settings | Languages & Frameworks | PHP | Servers](jetbrains://PhpStorm
 | `dev.74` | `localhost` | `8074` | _Xdebug_ | `app/xdebug3`  |      `/www/localhost`       |
 | `dev.80` | `localhost` | `8080` | _Xdebug_ | `app/xdebug3`  |      `/www/localhost`       |
 | `dev.81` | `localhost` | `8081` | _Xdebug_ | `app/xdebug3`  |      `/www/localhost`       |
+| `dev.82` | `localhost` | `8082` | _Xdebug_ | `app/xdebug3`  |      `/www/localhost`       |
 
 ## Docker < 20.10
 
@@ -128,6 +126,7 @@ docker-compose exec dev73 bash -c 'XDEBUG_SESSION=1 XDEBUG_CONFIG=1 php index.ph
 docker-compose exec dev74 bash -c 'XDEBUG_SESSION=1 XDEBUG_CONFIG=1 php index.php'
 docker-compose exec dev80 bash -c 'XDEBUG_SESSION=1 XDEBUG_CONFIG=1 php index.php'
 docker-compose exec dev81 bash -c 'XDEBUG_SESSION=1 XDEBUG_CONFIG=1 php index.php'
+docker-compose exec dev82 bash -c 'XDEBUG_SESSION=1 XDEBUG_CONFIG=1 php index.php'
 ```
 
 ## Articles
