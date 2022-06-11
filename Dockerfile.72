@@ -3,9 +3,9 @@ FROM php:7.2-apache
 ARG DEV_USER_UID=1000
 ENV TERM=xterm-256color
 
-RUN apt-get update
-RUN apt-get upgrade -y
-RUN DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
+RUN apt-get update && \
+    apt-get upgrade -y && \
+    DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
     cron \
     curl \
     git \
@@ -45,8 +45,6 @@ RUN (bash /setup/00-user.sh) && \
     (rm -fr /setup/)
 
 USER dev
-
-ADD --chown=dev:dev home-dev /home/dev/
 
 VOLUME /www
 WORKDIR /www
