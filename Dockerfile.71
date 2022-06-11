@@ -3,8 +3,6 @@ FROM php:7.1-apache
 ARG DEV_USER_UID=1000
 ENV TERM=xterm-256color
 
-ADD /rootfs/docker-build/ /docker-build/
-
 RUN apt-get update
 RUN apt-get upgrade -y
 RUN DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
@@ -33,16 +31,18 @@ RUN chmod +x /usr/local/bin/install-php-extensions && sync && install-php-extens
  zip
 
 ADD rootfs /
+ADD setup /setup
 
 ADD config/xdebug2.ini /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
 
-RUN (bash /docker-build/00-user.sh) && \
-    (bash /docker-build/10-bash.sh) && \
-    (bash /docker-build/20-apache.sh) && \
-    (bash /docker-build/50-composer.sh) && \
-    (bash /docker-build/60-symfony.sh) && \
-    (bash /docker-build/70-phpunit.sh 5 6 7) && \
-    (bash /docker-build/90-utils.sh)
+RUN (bash /setup/00-user.sh) && \
+    (bash /setup/10-bash.sh) && \
+    (bash /setup/20-apache.sh) && \
+    (bash /setup/50-composer.sh) && \
+    (bash /setup/60-symfony.sh) && \
+    (bash /setup/70-phpunit.sh 5 6 7) && \
+    (bash /setup/90-utils.sh) && \
+    (rm -fr /setup/)
 
 USER dev
 
