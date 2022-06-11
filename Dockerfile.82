@@ -1,0 +1,96 @@
+FROM php:8.2-rc-apache
+
+ARG DEV_USER_UID=1000
+ENV TERM=xterm-256color
+
+ADD /rootfs/docker-build/ /docker-build/
+
+RUN mkdir -p /tmp/summary && chmod 775 /tmp/summary
+RUN bash /docker-build/99-summary.sh | tee '/tmp/summary/pre-summary.log'
+RUN /docker-build/installed-extensions.sh > '/tmp/summary/pre-extensions.json'
+
+RUN apt-get update
+RUN apt-get upgrade -y
+RUN DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
+    cron \
+    curl \
+    git \
+    htop \
+    nano \
+    openssh-client \
+    screen \
+    ssl-cert \
+    sudo \
+    unzip \
+    wget
+
+RUN /usr/sbin/update-ca-certificates
+
+ADD https://github.com/mlocati/docker-php-extension-installer/releases/latest/download/install-php-extensions /usr/local/bin/
+RUN chmod +x /usr/local/bin/install-php-extensions && sync && install-php-extensions \
+# amqp \
+# apcu \
+# ast \
+ bcmath \
+# bz2 \
+ ds \
+ exif \
+ gd \
+ intl \
+# mbstring \
+ mcrypt \
+# memcached \
+# mongodb \
+# mysqli \
+# oauth \
+# opcache \
+ pcntl \
+# pdo_firebird \
+ pdo_mysql \
+# pdo_odbc \
+ pdo_pgsql \
+ redis \
+# soap \
+# sockets \
+# tidy \
+ uuid \
+ xdebug \
+ xsl \
+# yaml \
+ zip
+
+RUN /docker-build/installed-extensions.sh > '/tmp/summary/post-extensions.json'
+
+ADD rootfs /
+
+ADD config/xdebug3.ini /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
+
+RUN (bash /docker-build/00-user.sh) && \
+    (bash /docker-build/10-bash.sh) && \
+    (bash /docker-build/20-apache.sh) && \
+    (bash /docker-build/50-composer.sh) && \
+    (bash /docker-build/60-symfony.sh) && \
+    (bash /docker-build/70-phpunit.sh 8 9) && \
+    (bash /docker-build/90-utils.sh)
+
+USER dev
+
+ADD --chown=dev:dev home-dev /home/dev/
+
+RUN bash /docker-build/composer-global-plugin.sh 'icanhazstring/composer-unused' 'bamarni/composer-bin-plugin'
+RUN bash /docker-build/composer-global-bin.sh 'laravel' 'laravel/installer'
+RUN bash /docker-build/composer-global-bin.sh 'phpstan' 'phpstan/phpstan'
+RUN bash /docker-build/composer-global-bin-plugin.sh 'psalm' 'composer/package-versions-deprecated'
+RUN bash /docker-build/composer-global-bin.sh 'psalm' 'vimeo/psalm'
+
+VOLUME /www
+WORKDIR /www
+
+EXPOSE 80
+EXPOSE 443
+
+CMD ["sudo", "apache2-foreground"]
+
+RUN bash /docker-build/99-summary.sh | sudo tee '/tmp/summary/post-summary.log'
+RUN sudo chown -R dev:dev /tmp/summary/
+
