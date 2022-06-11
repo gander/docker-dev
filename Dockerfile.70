@@ -43,6 +43,8 @@ RUN (bash /setup/00-user.sh) && \
     (bash /setup/90-utils.sh) && \
     (rm -fr /setup/)
 
+RUN rm -rf /var/lib/apt/lists/*
+
 USER dev
 
 VOLUME /www
