@@ -11,6 +11,8 @@ if [ "$EXPECTED_CHECKSUM" != "$ACTUAL_CHECKSUM" ]; then
 fi
 
 RESULT=0
+php composer-setup.php --quiet --install-dir=/usr/local/bin --filename=composer-preview --preview || RESULT=$?
+php composer-setup.php --quiet --install-dir=/usr/local/bin --filename=composer-snapshot --snapshot || RESULT=$?
 php composer-setup.php --quiet --install-dir=/usr/local/bin --filename=composer1 --1 || RESULT=$?
 php composer-setup.php --quiet --install-dir=/usr/local/bin --filename=composer --stable || RESULT=$?
 rm composer-setup.php
