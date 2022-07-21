@@ -22,12 +22,13 @@ RUN /usr/sbin/update-ca-certificates
 
 ADD https://github.com/mlocati/docker-php-extension-installer/releases/latest/download/install-php-extensions /usr/local/bin/
 RUN chmod +x /usr/local/bin/install-php-extensions && sync && install-php-extensions \
- bcmath \
- gd \
- intl \
- mcrypt \
- pcntl \
- zip
+ bcmath-stable \
+ gd-stable \
+ intl-stable \
+ mcrypt-stable \
+ pcntl-stable \
+ xdebug \
+ zip-stable
 
 ADD rootfs /
 
