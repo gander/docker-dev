@@ -27,7 +27,7 @@ jobs:
     steps:
       - id: dockerfile
         shell: bash
-        run: echo "name=Dockerfile.$(echo '${{ matrix.version }}' | sed 's/\.//')" >> $GITHUB_OUTPUT
+        run: echo "::set-output name=value::Dockerfile.$(echo '${{ matrix.version }}' | sed 's/\.//')"
 
       - name: Checkout code
         uses: actions/checkout@v3
