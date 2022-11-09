@@ -27,9 +27,10 @@ RUN chmod +x /usr/local/bin/install-php-extensions && sync && install-php-extens
  intl-stable \
  mcrypt-stable \
  pcntl-stable \
+# xdebug-^3.2 \
  zip-stable
 
-RUN install-php-extensions xdebug
+RUN install-php-extensions xdebug/xdebug@3.2.0RC1
 
 ADD rootfs /
 
