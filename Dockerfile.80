@@ -31,7 +31,7 @@ RUN (bash /setup/00-user.sh) && \
         intl-stable \
         mcrypt-stable \
         pcntl-stable \
-        xdebug/xdebug@3.2.0 \
+        xdebug-^3.2 \
         zip-stable \
     ) && \
     (bash /setup/50-composer.sh) && \
