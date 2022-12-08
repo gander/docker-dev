@@ -20,11 +20,7 @@ RUN apt-get update && \
 
 RUN /usr/sbin/update-ca-certificates
 
-RUN install-php-extensions xdebug/xdebug@3.2.0
-
 ADD rootfs /
-
-ADD config/xdebug3.ini /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
 
 RUN (bash /setup/00-user.sh) && \
     (bash /setup/10-bash.sh) && \
@@ -45,6 +41,8 @@ RUN (bash /setup/00-user.sh) && \
     (rm -fr /setup/)
 
 RUN rm -rf /var/lib/apt/lists/*
+
+ADD config/xdebug3.ini /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
 
 USER dev
 
