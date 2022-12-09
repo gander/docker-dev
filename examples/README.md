@@ -7,7 +7,7 @@ docker run \
     --rm \
     --publish "80:80" \
     --workdir "/www/localhost/public" \
-    --name "dev_82" \
+    --name "dev_simple_82" \
     --hostname "dev-82" \
     --add-host="host.docker.internal:host-gateway" \
     "gander/dev:8.2"
@@ -33,7 +33,7 @@ docker run \
     --volume "${PWD}/localhost.pem:/etc/ssl/certs/ssl-cert-snakeoil.pem:ro" \
     --volume "${PWD}/localhost-key.pem:/etc/ssl/private/ssl-cert-snakeoil.key:ro" \
     --workdir "/www/localhost/public" \
-    --name "dev_82" \
+    --name "dev_ssl_82" \
     --hostname "dev-82" \
     --add-host="host.docker.internal:host-gateway" \
     "gander/dev:8.2"
