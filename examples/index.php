@@ -1,0 +1,2 @@
+<?= phpversion('xdebug') ?>
+<?php phpinfo();

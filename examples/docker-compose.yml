@@ -6,6 +6,8 @@ services:
     container_name: 'dev_56'
     image: 'gander/dev:5.6'
     working_dir: '/www/localhost/public'
+    volumes:
+      - './index.php:/www/localhost/public/index.php'
     ports:
       - '8056:80'
     extra_hosts:
@@ -17,6 +19,8 @@ services:
     container_name: 'dev_70'
     image: 'gander/dev:7.0'
     working_dir: '/www/localhost/public'
+    volumes:
+      - './index.php:/www/localhost/public/index.php'
     ports:
       - '8070:80'
     extra_hosts:
@@ -28,6 +32,8 @@ services:
     container_name: 'dev_71'
     image: 'gander/dev:7.1'
     working_dir: '/www/localhost/public'
+    volumes:
+      - './index.php:/www/localhost/public/index.php'
     ports:
       - '8071:80'
     extra_hosts:
@@ -39,6 +45,8 @@ services:
     container_name: 'dev_72'
     image: 'gander/dev:7.2'
     working_dir: '/www/localhost/public'
+    volumes:
+      - './index.php:/www/localhost/public/index.php'
     ports:
       - '8072:80'
     extra_hosts:
@@ -50,6 +58,8 @@ services:
     container_name: 'dev_73'
     image: 'gander/dev:7.3'
     working_dir: '/www/localhost/public'
+    volumes:
+      - './index.php:/www/localhost/public/index.php'
     ports:
       - '8073:80'
     extra_hosts:
@@ -61,6 +71,8 @@ services:
     container_name: 'dev_74'
     image: 'gander/dev:7.4'
     working_dir: '/www/localhost/public'
+    volumes:
+      - './index.php:/www/localhost/public/index.php'
     ports:
       - '8074:80'
     extra_hosts:
@@ -72,6 +84,8 @@ services:
     container_name: 'dev_80'
     image: 'gander/dev:8.0'
     working_dir: '/www/localhost/public'
+    volumes:
+      - './index.php:/www/localhost/public/index.php'
     ports:
       - '8080:80'
     extra_hosts:
@@ -83,6 +97,8 @@ services:
     container_name: 'dev_81'
     image: 'gander/dev:8.1'
     working_dir: '/www/localhost/public'
+    volumes:
+      - './index.php:/www/localhost/public/index.php'
     ports:
       - '8081:80'
     extra_hosts:
@@ -94,6 +110,8 @@ services:
     container_name: 'dev_82'
     image: 'gander/dev:8.2'
     working_dir: '/www/localhost/public'
+    volumes:
+      - './index.php:/www/localhost/public/index.php'
     ports:
       - '8082:80'
     extra_hosts:

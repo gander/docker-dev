@@ -3,37 +3,25 @@
 ## Example "docker run" configuration
 
 ```shell
-docker run --interactive --tty --rm --volume "$PWD:/www" gander/dev:7.3 <command>
-```
-
-```shell
 docker run \
     --rm \
     --publish "80:80" \
-    --publish "443:443" \
     --workdir "/www/localhost/public" \
-    --name "dev_80" \
-    --hostname "dev-80" \
+    --name "dev_82" \
+    --hostname "dev-82" \
     --add-host="host.docker.internal:host-gateway" \
-    "gander/dev:8.0"
+    "gander/dev:8.2"
 ```
 
-```shell
-docker run \
-    --rm \
-    --publish "80:80" \
-    --publish "443:443" \
-    --workdir "/www/localhost/public" \
-    --name "dev_56" \
-    --hostname "dev-56" \
-    --add-host="host.docker.internal:host-gateway" \
-    "gander/dev:5.6"
-```
+Open: [localhost](http://localhost/)
 
 ## SSL with [mkcert](https://mkcert.dev/)
 
 ```shell
 mkcert -install
+```
+
+```shell
 mkcert localhost
 ```
 
@@ -45,18 +33,16 @@ docker run \
     --volume "${PWD}/localhost.pem:/etc/ssl/certs/ssl-cert-snakeoil.pem:ro" \
     --volume "${PWD}/localhost-key.pem:/etc/ssl/private/ssl-cert-snakeoil.key:ro" \
     --workdir "/www/localhost/public" \
-    --name "dev_80" \
-    --hostname "dev-80" \
+    --name "dev_82" \
+    --hostname "dev-82" \
     --add-host="host.docker.internal:host-gateway" \
-    "gander/dev:8.0"
+    "gander/dev:8.2"
 ```
+
++ Open: [localhost over HTTP](http://localhost/)
++ Open: [localhost over HTTPS](https://localhost/)
 
 ## Example [docker-compose.yml](docker-compose.yml) configuration
-
-```yaml
-extra_hosts:
-  - "host.docker.internal:host-gateway"
-```
 
 ```shell
 docker-compose up
@@ -68,19 +54,28 @@ _[File | Settings | PHP | Debug](jetbrains://PhpStorm/settings?name=PHP--Debug)_
 
 ## PhpStorm "Servers" Configuration
 
-_[File | Settings | Languages & Frameworks | PHP | Servers](jetbrains://PhpStorm/settings?name=Languages+%26+Frameworks--PHP--Servers)_
+_[File | Settings | PHP | Servers](jetbrains://PhpStorm/settings?name=PHP--Servers)_
+
+These settings refer to the configuration in the [docker-compose.yml](docker-compose.yml) file:
 
 |   Name   |    Host     |  Port  | Debugger | File/Directory | Absolute path on the server |
 |:--------:|:-----------:|:------:|:--------:|:--------------:|:---------------------------:|
-| `dev.56` | `localhost` | `8056` | _Xdebug_ | `app/xdebug2`  |      `/www/localhost`       |
-| `dev.70` | `localhost` | `8070` | _Xdebug_ | `app/xdebug2`  |      `/www/localhost`       |
-| `dev.71` | `localhost` | `8071` | _Xdebug_ | `app/xdebug2`  |      `/www/localhost`       |
-| `dev.72` | `localhost` | `8072` | _Xdebug_ | `app/xdebug3`  |      `/www/localhost`       |
-| `dev.73` | `localhost` | `8073` | _Xdebug_ | `app/xdebug3`  |      `/www/localhost`       |
-| `dev.74` | `localhost` | `8074` | _Xdebug_ | `app/xdebug3`  |      `/www/localhost`       |
-| `dev.80` | `localhost` | `8080` | _Xdebug_ | `app/xdebug3`  |      `/www/localhost`       |
-| `dev.81` | `localhost` | `8081` | _Xdebug_ | `app/xdebug3`  |      `/www/localhost`       |
-| `dev.82` | `localhost` | `8082` | _Xdebug_ | `app/xdebug3`  |      `/www/localhost`       |
+| `dev.56` | `localhost` | `8056` | _Xdebug_ |   `examples`   |   `/www/localhost/public`   |
+| `dev.70` | `localhost` | `8070` | _Xdebug_ |   `examples`   |   `/www/localhost/public`   |
+| `dev.71` | `localhost` | `8071` | _Xdebug_ |   `examples`   |   `/www/localhost/public`   |
+| `dev.72` | `localhost` | `8072` | _Xdebug_ |   `examples`   |   `/www/localhost/public`   |
+| `dev.73` | `localhost` | `8073` | _Xdebug_ |   `examples`   |   `/www/localhost/public`   |
+| `dev.74` | `localhost` | `8074` | _Xdebug_ |   `examples`   |   `/www/localhost/public`   |
+| `dev.80` | `localhost` | `8080` | _Xdebug_ |   `examples`   |   `/www/localhost/public`   |
+| `dev.81` | `localhost` | `8081` | _Xdebug_ |   `examples`   |   `/www/localhost/public`   |
+| `dev.82` | `localhost` | `8082` | _Xdebug_ |   `examples`   |   `/www/localhost/public`   |
+
+## Docker 20.10+
+
+```yaml
+extra_hosts:
+  - "host.docker.internal:host-gateway"
+```
 
 ## Docker < 20.10
 
