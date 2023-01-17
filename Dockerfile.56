@@ -31,6 +31,8 @@ RUN (bash /setup/00-user.sh) && \
         intl-stable \
         mcrypt-stable \
         pcntl-stable \
+        pdo_mysql-stable \
+        pdo_pgsql-stable \
         xdebug-^2.5 \
         zip-stable \
     ) && \
