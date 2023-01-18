@@ -36,8 +36,8 @@ RUN (bash /setup/00-user.sh) && \
         pdo_pgsql-stable \
         xdebug-^2.5 \
         zip-stable \
-    ) && \
-    (bash /setup/50-composer.sh) && \
+    )
+RUN (bash /setup/50-composer.sh) && \
     (bash /setup/60-symfony.sh) && \
     (bash /setup/70-phpunit.sh 4 5) && \
     (bash /setup/90-utils.sh) && \
