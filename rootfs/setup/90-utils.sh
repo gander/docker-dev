@@ -2,7 +2,9 @@
 set -euo pipefail
 IFS=$'\n\t'
 
-ver=1.1.1
+RELEASE=$(curl https://api.github.com/repos/fabpot/local-php-security-checker/releases/latest | jq --raw-output '.assets[]|.browser_download_url|select(endswith("_linux_amd64"))')
 
-curl -LsS "https://github.com/fabpot/local-php-security-checker/releases/download/v${ver}/local-php-security-checker_${ver}_linux_amd64" -o "/usr/local/bin/local-php-security-checker"
-chmod +x "/usr/local/bin/local-php-security-checker"
+if [ -n "${RELEASE}" ]; then
+  curl -LsS "${RELEASE}" -o "/usr/local/bin/local-php-security-checker"
+  chmod +x "/usr/local/bin/local-php-security-checker"
+fi
