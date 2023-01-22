@@ -30,7 +30,6 @@ RUN (bash /setup/30-php.sh \
         bcmath-stable \
         gd-stable \
         intl-stable \
-        mcrypt-stable \
         pcntl-stable \
         pdo_mysql-stable \
         pdo_pgsql-stable \
