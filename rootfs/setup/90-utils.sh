@@ -8,8 +8,3 @@ if [ -n "${RELEASE}" ]; then
   curl -LsS "${RELEASE}" -o "/usr/local/bin/local-php-security-checker"
   chmod +x "/usr/local/bin/local-php-security-checker"
 fi
-
-if [[ ! $(php -r 'echo PHP_VERSION;') < '7.4.0' ]]; then
-  curl -LsS https://github.com/composer-unused/composer-unused/releases/latest/download/composer-unused.phar -o /usr/local/bin/composer-unused
-  chmod +x /usr/local/bin/composer-unused
-fi
