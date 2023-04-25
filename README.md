@@ -20,3 +20,104 @@ PHP, Apache, dev user (1000)
 | `/www/example.localhost/public/test/index.php` | `http://example.localhost/test/index.php` |
 
 + [Examples](./examples/README.md)
+
+## Build
+
+```shell
+docker build \
+    --tag gander/dev:8.2 \
+    --build-arg PHP_VERSION=8.2 \
+    --build-arg XDEBUG_VERSION=3.2 \
+    --build-arg XDEBUG_FILE=config/xdebug3.ini \
+    --build-arg PHP_EXTENSIONS_ADD= \
+    --build-arg PHPUNIT_VERSIONS=8,9,10 \
+    .
+```
+
+```shell
+docker build \
+    --tag gander/dev:8.1 \
+    --build-arg PHP_VERSION=8.1 \
+    --build-arg XDEBUG_VERSION=3.2 \
+    --build-arg XDEBUG_FILE=config/xdebug3.ini \
+    --build-arg PHP_EXTENSIONS_ADD=mcrypt-stable \
+    --build-arg PHPUNIT_VERSIONS=8,9,10 \
+    .
+```
+
+```shell
+docker build \
+    --tag gander/dev:8.0 \
+    --build-arg PHP_VERSION=8.0 \
+    --build-arg XDEBUG_VERSION=3.2 \
+    --build-arg XDEBUG_FILE=config/xdebug3.ini \
+    --build-arg PHP_EXTENSIONS_ADD=mcrypt-stable \
+    --build-arg PHPUNIT_VERSIONS=8,9 \
+    .
+```
+
+```shell
+docker build \
+    --tag gander/dev:7.4 \
+    --build-arg PHP_VERSION=7.4 \
+    --build-arg XDEBUG_VERSION=3.1 \
+    --build-arg XDEBUG_FILE=config/xdebug3.ini \
+    --build-arg PHP_EXTENSIONS_ADD=mcrypt-stable \
+    --build-arg PHPUNIT_VERSIONS=8,9 \
+    .
+```
+
+```shell
+docker build \
+    --tag gander/dev:7.3 \
+    --build-arg PHP_VERSION=7.3 \
+    --build-arg XDEBUG_VERSION=3.1 \
+    --build-arg XDEBUG_FILE=config/xdebug3.ini \
+    --build-arg PHP_EXTENSIONS_ADD=mcrypt-stable \
+    --build-arg PHPUNIT_VERSIONS=7,8,9 \
+    .
+```
+
+```shell
+docker build \
+    --tag gander/dev:7.2 \
+    --build-arg PHP_VERSION=7.2 \
+    --build-arg XDEBUG_VERSION=3.1 \
+    --build-arg XDEBUG_FILE=config/xdebug3.ini \
+    --build-arg PHP_EXTENSIONS_ADD=mcrypt-stable \
+    --build-arg PHPUNIT_VERSIONS=6,7,8 \
+    .
+```
+
+```shell
+docker build \
+    --tag gander/dev:7.1 \
+    --build-arg PHP_VERSION=7.1 \
+    --build-arg XDEBUG_VERSION=2.9 \
+    --build-arg XDEBUG_FILE=config/xdebug2.ini \
+    --build-arg PHP_EXTENSIONS_ADD=mcrypt-stable \
+    --build-arg PHPUNIT_VERSIONS=5,6,7 \
+    .
+```
+
+```shell
+docker build \
+    --tag gander/dev:7.0 \
+    --build-arg PHP_VERSION=7.0 \
+    --build-arg XDEBUG_VERSION=2.7 \
+    --build-arg XDEBUG_FILE=config/xdebug2.ini \
+    --build-arg PHP_EXTENSIONS_ADD=mcrypt-stable \
+    --build-arg PHPUNIT_VERSIONS=5,6 \
+    .
+```
+
+```shell
+docker build \
+    --tag gander/dev:5.6 \
+    --build-arg PHP_VERSION=5.6 \
+    --build-arg XDEBUG_VERSION=2.5 \
+    --build-arg XDEBUG_FILE=config/xdebug2.ini \
+    --build-arg PHP_EXTENSIONS_ADD=mcrypt-stable \
+    --build-arg PHPUNIT_VERSIONS=4,5 \
+    .
+```
