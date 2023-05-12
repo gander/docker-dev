@@ -12,8 +12,14 @@ ARG PHP_EXTENSIONS_ADD=mcrypt-stable
 
 ARG PHPUNIT_VERSIONS=8,9,10
 
+ARG USE_ARCHIVE
+
 ARG DEV_USER_UID=1000
 ENV TERM=xterm-256color
+
+RUN if [ "${USE_ARCHIVE}" -eq "1" ]; then sed -i s/deb.debian.org/archive.debian.org/g /etc/apt/sources.list; fi
+RUN if [ "${USE_ARCHIVE}" -eq "1" ]; then sed -i 's|security.debian.org|archive.debian.org/|g' /etc/apt/sources.list; fi
+RUN if [ "${USE_ARCHIVE}" -eq "1" ]; then sed -i '/stretch-updates/d' /etc/apt/sources.list; fi
 
 RUN apt-get update && \
     apt-get upgrade -y && \
