@@ -15,7 +15,8 @@ jobs:
       max-parallel: 10
       matrix:
         include:
-          - version: '8.3'
+          - version: '8.3-rc'
+            tag: '8.3'
             xdebug_ext: false
             phpunit_ver: '8,9,10'
           - version: '8.2'
@@ -82,7 +83,7 @@ jobs:
         with:
           context: .
           file: Dockerfile
-          tags: gander/dev:${{ matrix.version }}
+          tags: gander/dev:${{ matrix.tag || matrix.version }}
           push: true
           build-args: |
             PHP_VERSION=${{ matrix.version }}
