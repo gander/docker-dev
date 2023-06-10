@@ -8,7 +8,7 @@ ARG XDEBUG_VERSION=3.2
 ARG XDEBUG_CONFIG_FILE=config/xdebug3.ini
 
 ARG PHP_EXTENSIONS=bcmath-stable,gd-stable,intl-stable,pcntl-stable,pdo_mysql-stable,pdo_pgsql-stable,xdebug-^${XDEBUG_VERSION},zip-stable
-ARG PHP_EXTENSIONS_ADD=mcrypt-stable
+ARG PHP_EXTENSIONS_ADD
 
 ARG PHPUNIT_VERSIONS=8,9,10
 

@@ -4,7 +4,7 @@ PHP, Apache, dev user (1000)
 
 ## Supported tags:
 
-* `8.0`, `8.1`, `8.2`
+* `8.0`, `8.1`, `8.2`, `8.3`
 * `7.0`, `7.1`, `7.2`, `7.3`, `7.4`
 * `5.6`
 
@@ -25,11 +25,21 @@ PHP, Apache, dev user (1000)
 
 ```shell
 docker build \
+    --tag gander/dev:8.3 \
+    --build-arg PHP_VERSION=8.3-rc \
+    --build-arg XDEBUG_VERSION=3.2 \
+    --build-arg XDEBUG_FILE=config/xdebug3.ini \
+    --build-arg PHP_EXTENSIONS=bcmath-stable,gd-stable,intl-stable,pcntl-stable,pdo_mysql-stable,pdo_pgsql-stable,zip-stable \
+    --build-arg PHPUNIT_VERSIONS=8,9,10 \
+    .
+```
+
+```shell
+docker build \
     --tag gander/dev:8.2 \
     --build-arg PHP_VERSION=8.2 \
     --build-arg XDEBUG_VERSION=3.2 \
     --build-arg XDEBUG_FILE=config/xdebug3.ini \
-    --build-arg PHP_EXTENSIONS_ADD= \
     --build-arg PHPUNIT_VERSIONS=8,9,10 \
     .
 ```
@@ -108,6 +118,7 @@ docker build \
     --build-arg XDEBUG_FILE=config/xdebug2.ini \
     --build-arg PHP_EXTENSIONS_ADD=mcrypt-stable \
     --build-arg PHPUNIT_VERSIONS=5,6 \
+    --build-arg USE_ARCHIVE=1 \
     .
 ```
 
@@ -119,5 +130,6 @@ docker build \
     --build-arg XDEBUG_FILE=config/xdebug2.ini \
     --build-arg PHP_EXTENSIONS_ADD=mcrypt-stable \
     --build-arg PHPUNIT_VERSIONS=4,5 \
+    --build-arg USE_ARCHIVE=1 \
     .
 ```
