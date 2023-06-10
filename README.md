@@ -27,9 +27,7 @@ PHP, Apache, dev user (1000)
 docker build \
     --tag gander/dev:8.3 \
     --build-arg PHP_VERSION=8.3-rc \
-    --build-arg XDEBUG_VERSION=3.2 \
-    --build-arg XDEBUG_FILE=config/xdebug3.ini \
-    --build-arg PHP_EXTENSIONS=bcmath-stable,gd-stable,intl-stable,pcntl-stable,pdo_mysql-stable,pdo_pgsql-stable,zip-stable \
+    --build-arg XDEBUG_EXTENSION= \
     --build-arg PHPUNIT_VERSIONS=8,9,10 \
     .
 ```

@@ -5,9 +5,10 @@ FROM php:${PHP_VERSION}-apache
 ARG PHP_VERSION
 
 ARG XDEBUG_VERSION=3.2
+ARG XDEBUG_EXTENSION=xdebug-^${XDEBUG_VERSION}
 ARG XDEBUG_CONFIG_FILE=config/xdebug3.ini
 
-ARG PHP_EXTENSIONS=bcmath-stable,gd-stable,intl-stable,pcntl-stable,pdo_mysql-stable,pdo_pgsql-stable,xdebug-^${XDEBUG_VERSION},zip-stable
+ARG PHP_EXTENSIONS=bcmath-stable,gd-stable,intl-stable,pcntl-stable,pdo_mysql-stable,pdo_pgsql-stable,zip-stable
 ARG PHP_EXTENSIONS_ADD
 
 ARG PHPUNIT_VERSIONS=8,9,10
@@ -44,7 +45,7 @@ ADD rootfs /
 RUN (bash /setup/00-user.sh) && \
     (bash /setup/10-bash.sh) && \
     (bash /setup/20-apache.sh) && \
-    (bash /setup/30-php.sh $(echo ${PHP_EXTENSIONS} | tr "," " ") $(echo ${PHP_EXTENSIONS_ADD} | tr "," " "))
+    (bash /setup/30-php.sh $(echo ${PHP_EXTENSIONS} | tr "," " ") $(echo ${PHP_EXTENSIONS_ADD} | tr "," " ") ${XDEBUG_EXTENSION})
 
 RUN (bash /setup/50-composer.sh) && \
     (bash /setup/60-symfony$([[ "${PHP_VERSION}" > "7.0" ]] && echo "-cli").sh) && \

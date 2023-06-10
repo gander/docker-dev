@@ -15,10 +15,12 @@ jobs:
       max-parallel: 10
       matrix:
         include:
+          - version: '8.3'
+            xdebug_ext: false
+            phpunit_ver: '8,9,10'
           - version: '8.2'
             xdebug_ver: '3.2'
             xdebug_file: 'config/xdebug3.ini'
-            extensions: ''
             phpunit_ver: '8,9,10'
           - version: '8.1'
             xdebug_ver: '3.2'
@@ -84,6 +86,7 @@ jobs:
           push: true
           build-args: |
             PHP_VERSION=${{ matrix.version }}
+            XDEBUG_EXTENSION=${{ matrix.xdebug_ext }}
             XDEBUG_VERSION=${{ matrix.xdebug_ver }}
             XDEBUG_FILE=${{ matrix.xdebug_file }}
             PHP_EXTENSIONS_ADD=${{ matrix.extensions }}
