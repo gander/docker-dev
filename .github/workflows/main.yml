@@ -18,7 +18,7 @@ jobs:
           - version: '8.3-rc'
             tag: '8.3'
             xdebug_ext: ''
-            xdebug_file: 'config/xdebug3.ini'
+            xdebug_file: 'config/xdebug-blank.ini'
             phpunit_ver: '8,9,10'
           - version: '8.2'
             xdebug_ext: 'xdebug-^3.2'

@@ -28,6 +28,7 @@ docker build \
     --tag gander/dev:8.3 \
     --build-arg PHP_VERSION=8.3-rc \
     --build-arg XDEBUG_EXTENSION= \
+    --build-arg XDEBUG_CONFIG_FILE=config/xdebug-blank.ini \
     --build-arg PHPUNIT_VERSIONS=8,9,10 \
     .
 ```
