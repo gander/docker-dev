@@ -11,14 +11,12 @@ if [ "$EXPECTED_CHECKSUM" != "$ACTUAL_CHECKSUM" ]; then
 fi
 
 RESULT=0
-php composer-setup.php --quiet --install-dir=/usr/local/bin --filename=composer-preview --preview || RESULT=$?
-php composer-setup.php --quiet --install-dir=/usr/local/bin --filename=composer-snapshot --snapshot || RESULT=$?
-php composer-setup.php --quiet --install-dir=/usr/local/bin --filename=composer1 --1 || RESULT=$?
 php composer-setup.php --quiet --install-dir=/usr/local/bin --filename=composer --stable || RESULT=$?
 rm composer-setup.php
 
 if [ $RESULT -eq 0 ]; then
   printf "if [ -d \"\$HOME/.composer/vendor/bin\" ]; then\n    PATH=\"\$PATH:\$HOME/.composer/vendor/bin\"\nfi\n" >>/etc/bash.bashrc
+  /usr/local/bin/composer --version >> /var/www/html/versions.txt
 fi
 
 exit $RESULT
