@@ -2,7 +2,6 @@
 set -euo pipefail
 IFS=$'\n\t'
 
-curl -1sLf 'https://dl.cloudsmith.io/public/symfony/stable/setup.deb.sh' | bash
-apt install symfony-cli
+wget https://get.symfony.com/cli/installer -O - | bash
 
-/usr/bin/symfony version >> /var/www/html/versions.txt
+/usr/bin/symfony version --no-ansi >> /var/www/html/versions.txt

@@ -48,7 +48,7 @@ RUN (bash /setup/00-user.sh) && \
     (bash /setup/30-php.sh $(echo ${PHP_EXTENSIONS} | tr "," " ") $(echo ${PHP_EXTENSIONS_ADD} | tr "," " ") ${XDEBUG_EXTENSION})
 
 RUN (bash /setup/50-composer.sh) && \
-    (bash /setup/60-symfony$([ $(echo "${PHP_VERSION} > 7.0" | bc -l) -eq 1 ] && echo "-cli").sh) && \
+    (bash /setup/60-symfony-cli.sh) && \
     (bash /setup/70-phpunit.sh $(echo ${PHPUNIT_VERSIONS} | tr "," " ")) && \
     (bash /setup/90-utils.sh) && \
     (rm -fr /setup/)
