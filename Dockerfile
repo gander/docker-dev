@@ -62,6 +62,9 @@ USER dev
 VOLUME /www
 WORKDIR /www
 
+HEALTHCHECK --interval=30s --timeout=3s \
+  CMD curl -f http://localhost/ || exit 1
+
 EXPOSE 80
 EXPOSE 443
 
