@@ -60,7 +60,7 @@ ADD ${XDEBUG_CONFIG_FILE} /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
 USER dev
 
 VOLUME /www
-WORKDIR /www
+WORKDIR /www/localhost/public
 
 HEALTHCHECK --interval=30s --timeout=3s \
   CMD curl -f http://localhost/ || exit 1
