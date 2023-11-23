@@ -15,7 +15,7 @@ jobs:
       max-parallel: 10
       matrix:
         include:
-          - version: '8.3-rc'
+          - version: '8.3'
             tag: '8.3'
             xdebug_ext: 'xdebug-^3.3'
             xdebug_file: 'config/xdebug3.ini'

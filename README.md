@@ -26,7 +26,7 @@ PHP, Apache, dev user (1000)
 ```shell
 docker build \
     --tag gander/dev:8.3 \
-    --build-arg PHP_VERSION=8.3-rc \
+    --build-arg PHP_VERSION=8.3 \
     --build-arg XDEBUG_EXTENSION=xdebug-^3.3 \
     --build-arg XDEBUG_CONFIG_FILE=config/xdebug3.ini \
     --build-arg PHPUNIT_VERSIONS=8,9,10 \
