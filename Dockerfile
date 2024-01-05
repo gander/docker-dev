@@ -1,10 +1,10 @@
-ARG PHP_VERSION=8.2
+ARG PHP_VERSION=8.3
 
 FROM php:${PHP_VERSION}-apache
 
 ARG PHP_VERSION
 
-ARG XDEBUG_EXTENSION=xdebug-^3.2
+ARG XDEBUG_EXTENSION=xdebug-^3.3
 ARG XDEBUG_CONFIG_FILE=config/xdebug3.ini
 
 ARG PHP_EXTENSIONS=bcmath-stable,gd-stable,intl-stable,pcntl-stable,pdo_mysql-stable,pdo_pgsql-stable,zip-stable
