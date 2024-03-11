@@ -29,7 +29,7 @@ docker build \
     --build-arg PHP_VERSION=8.3 \
     --build-arg XDEBUG_EXTENSION=xdebug-^3.3 \
     --build-arg XDEBUG_CONFIG_FILE=config/xdebug3.ini \
-    --build-arg PHPUNIT_VERSIONS=8,9,10 \
+    --build-arg PHPUNIT_VERSIONS=8,9,10,11 \
     .
 ```
 
@@ -39,7 +39,7 @@ docker build \
     --build-arg PHP_VERSION=8.2 \
     --build-arg XDEBUG_EXTENSION=xdebug-^3.2 \
     --build-arg XDEBUG_FILE=config/xdebug3.ini \
-    --build-arg PHPUNIT_VERSIONS=8,9,10 \
+    --build-arg PHPUNIT_VERSIONS=8,9,10,11 \
     .
 ```
 
